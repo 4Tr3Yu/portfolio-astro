@@ -1,10 +1,15 @@
 ---
 import Arrow from './icons/Arrow.astro';
+import External from './icons/External.astro';
 import Modal from './ui/Modal.astro';
 interface Props {
 	title: string;
 	company: string;
-	body: string;
+	body: {
+		short: string;
+		long: string;
+		tasks: Array<string>;
+	};
 	href: string;
 	imgSrc: string;
 	iconSrc: string;
@@ -19,9 +24,6 @@ const { href, title, body, imgSrc, iconSrc, company, dates, btn, stack} = Astro.
 <article class="card relative flex justify-center items-center rounded-md overflow-hidden min- border border-red-500/25">
 	<div class="content p-4 h-full w-full flex flex-col justify-end ">
 		<header>
-		<!-- 	<div class="logo-container text-left w-full ">
-				<img class="max-h-6 " src={iconSrc} alt={`${company} logo`}>
-			</div> -->
 			<h3 class="text-lg font-semibold w-full text-amber-300 mb-0">{company}</h3>
 			<h4 class="text-md font-bold w-full mb-0">{title}</h4>
 			<time class="dates w-full mb-3 font-bold">
@@ -29,7 +31,7 @@ const { href, title, body, imgSrc, iconSrc, company, dates, btn, stack} = Astro.
 			</time>
 		</header>
 		<div class="card-body ">
-			<p class="text-xs text-amber-200 ">{body}</p>
+			<p class="text-xs text-amber-200 line-clamp-3">{body.long}</p>
 			<button data-modal={`modal-${company.toLowerCase().split(' ').join('-')}`} class="open-modal flex justify-start items-center text-xs font-bold">Conoce más <Arrow>/</button>
 		</div>
 	</div>
@@ -39,12 +41,31 @@ const { href, title, body, imgSrc, iconSrc, company, dates, btn, stack} = Astro.
 </article>
 
 <Modal id={`${company.toLowerCase().split(' ').join('-')}`} >
-	<h2 class="text-2xl text-amber-400 font-extrabold mb-4 ">{company}</h2>
-	<p class="text-amber-200 text-sm">{body}</p>
-	<h3 class="text-lg font-medium">Tech Stack</h3>
-	<code>
-		{stack && stack.map((tech) => <span class="text-xs text-amber-200">{tech}</span>)}
-	</code>
+	<div class="logo-container text-left w-80 mb-6">
+		<img class=" " src={iconSrc} alt={`${company} logo`}>
+	</div>
+	<h3 class="text-2xl text-amber-400 font-extrabold mb-2 flex items-center">
+		{company}
+		<a href={href} target="_blank" class="text-xs ml-1">
+			<External class="size-4" />
+		</a>
+	</h3>
+	<p class="text-amber-200/90 line text-sm mb-6">{body.long}</p>
+	<h4 class="text-lg font-medium mb-3">Stack Tecnico</h4>
+	<div class="w-full grid grid-cols-6 gap-4  mb-6">
+		{stack && stack.map((tech) => {
+			return (
+				<figure class="flex flex-col min-h-12 mr-2 items-center">
+					<img class="w-6 mb-2 flex-auto" src={`./icons/${tech.toLowerCase()}.svg`} alt={tech} />
+					<figcaption class="text-xs">{tech} </figcaption>
+				</figure>
+			)
+		})}
+	</div>
+	<h4 class="text-lg font-medium mb-3">Tareas destacadas</h4>
+	<ul class="text-sm mb-6 list-disc pl-5">
+		{body.tasks && body.tasks.map((task) => <li class="mb-2">{task}</li>)}
+	</ul>
 </Modal>
 
 <style lang="scss">
@@ -128,12 +149,6 @@ const { href, title, body, imgSrc, iconSrc, company, dates, btn, stack} = Astro.
 		}
 	}
 
-	.logo-container {
-
-		img {
-			filter: grayscale(1);
-		}
-	}
 	@keyframes zoomEffect {
     0% {
         transform: scale(1);
