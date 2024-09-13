@@ -1,0 +1,28 @@
+---
+import Logo from "./Logo.astro"
+---
+<header class="backdrop-blur-sm sticky top-0 z-10">
+	<div class="flex justify-between items-center max-w-[1024px] mx-auto py-3 px-3">
+		<div class="logo w-48">
+			<Logo/>
+		</div>
+		<nav class="hidden flex-row md:flex gap-x-6 opacity-90">
+			<a href="#about">Sobre Mi</a>
+			<a href="#jobs">Experiencia</a>
+			<a href="#projects">Proyectos</a>
+			<a href="#contact">Home</a>
+			<p class="toggle-btn">
+				DARK MODE TOGGLE
+			</p>
+		</nav>
+	</div>
+</header>
+<style lang="scss">
+	.toggle-btn {
+	
+		text-transform: lowercase;
+		&::first-letter {
+			text-transform: uppercase;
+		}
+	}
+</style>

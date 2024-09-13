@@ -1,64 +1,22 @@
-<div class="lines">
-	<div class="line"></div>
-	<div class="line"></div>
-	<div class="line"></div>
+<div class="fixed top-0 left-0 h-full w-full overflow-hidden -z-50">
+  <div
+    class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_left,#751717_1px,transparent_1px),linear-gradient(to_bottom,#751717_1px,transparent_3px)] bg-[size:80px_74px] transform rotate-45 opacity-10"></div>
+  <div
+    class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_left,#751717_1px,transparent_1px),linear-gradient(to_bottom,#751717_1px,transparent_3px)] bg-[size:80px_74px] opacity-20"></div>
+  <div
+    class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_left,#751717_1px,transparent_1px),linear-gradient(to_bottom,#751717_1px,transparent_3px)] bg-[size:80px_74px] tranform -rotate-45 opacity-30"></div>
+    <div class="circle absolute w-full h-full top-0 left-0 bg-[radial-gradient(50%_50%_at_50%_-10%,#751717,transparent)]  "></div>
 </div>
-<style>
-	.lines {
-		z-index: -1;
-		position: absolute;
-		top: 10%;
-		left: 0;
-		right: 0;
-		height: 80%;
-		margin: auto;
-		width: 80%;
-		overflow: hidden;
-		.line {
-			position: absolute;
-			width: 1px;
-			height: 100%;
-			top: 0;
-			left: 50%;
-			background: rgba(255, 255, 255, 0.1);
-			overflow: hidden;
+<div class="black-cover-left bottom-0 left-0 h-full w-full fixed -z-40"></div>
+<div class="black-cover-right bottom-0 left-0 h-full w-full fixed -z-40"></div>
 
-			&::after {
-				content: "";
-				display: block;
-				position: absolute;
-				height: 15vh;
-				width: 100%;
-				top: -50%;
-				left: 0;
-				background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), color-stop(75%, #000), to(#000));
-				background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #000 75%, #000 100%);
-				animation: run 7s 0s infinite;
-				animation-fill-mode: forwards;
-				animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-			}
+<style lang="scss">
+  .black-cover-left {
+    background-image: linear-gradient(to top right, black, transparent 55%);
+    background-size: 150% 150%;
+  }
 
-			&:nth-child(1) {
-				margin-left: -25%;
-				&::after {
-					animation-delay: 2s;
-				}
-			}
-			&:nth-child(3) {
-				margin-left: 25%;
-				&:nth-child(3)::after {
-					animation-delay: 2.5s;
-				}
-			}
-
-		}
-	}
-	@keyframes run {
-		0% {
-			top: -50%;
-		}
-		100% {
-			top: 110%;
-		}
-	}
+  .black-cover-right {
+    background-image: linear-gradient(to top left, black, transparent 35%);
+  }
 </style>

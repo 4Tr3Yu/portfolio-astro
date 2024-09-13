@@ -1,0 +1,35 @@
+<div {...Astro.props} >
+	<div class="relative size-64 profile-container">
+		<img src="/images/ja.jpg" alt="Jorge Aguirre" class="w-100 h-100 object-cover profile-image"  />
+	</div>
+</div>
+<style lang="scss">
+
+
+	.profile-image {
+		filter: sepia(1) hue-rotate(330deg) saturate(2);
+		transition: transform 0.5s ease;
+		transform-style: preserve-3d;
+		perspective: 1000px;
+		border: 5px solid #751717;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+		border-radius: 50%;
+		&:hover {
+			transform: rotateY(15deg) rotateX(5deg) scale(1.05);
+		}
+	}
+
+	.profile-container::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(45deg, #751717,#000000);
+		mix-blend-mode: overlay;
+		pointer-events: none;
+		border-radius: 50%;
+
+	}
+</style>

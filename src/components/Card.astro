@@ -1,22 +1,147 @@
 ---
+import Arrow from './icons/Arrow.astro';
+import Modal from './ui/Modal.astro';
 interface Props {
 	title: string;
+	company: string;
 	body: string;
 	href: string;
 	imgSrc: string;
 	iconSrc: string;
+	dates: Array<string>;
+	btn?: boolean;
+	stack?: Array<string>;
 }
 
-const { href, title, body, imgSrc, iconSrc } = Astro.props;
+const { href, title, body, imgSrc, iconSrc, company, dates, btn, stack} = Astro.props;
 ---
 
-<div class="card">
-	<div class="img-container">
-		<img src={imgSrc} alt={title} />
+<article class="card relative flex justify-center items-center rounded-md overflow-hidden min- border border-red-500/25">
+	<div class="content p-4 h-full w-full flex flex-col justify-end ">
+		<header>
+		<!-- 	<div class="logo-container text-left w-full ">
+				<img class="max-h-6 " src={iconSrc} alt={`${company} logo`}>
+			</div> -->
+			<h3 class="text-lg font-semibold w-full text-amber-300 mb-0">{company}</h3>
+			<h4 class="text-md font-bold w-full mb-0">{title}</h4>
+			<time class="dates w-full mb-3 font-bold">
+				{dates.map((date) => <span class="mr-2 text-xs text-amber-200">{date}</span>)}
+			</time>
+		</header>
+		<div class="card-body ">
+			<p class="text-xs text-amber-200 ">{body}</p>
+			<button data-modal={`modal-${company.toLowerCase().split(' ').join('-')}`} class="open-modal flex justify-start items-center text-xs font-bold">Conoce más <Arrow>/</button>
+		</div>
 	</div>
-	<div class="card-body">
-		<h2>{title}</h2>
-		<p>{body}</p>
-		<img src={iconSrc} alt="">
+	<div class="img-container absolute top-0 left-0 h-full w-full overflow-hidden -z-10">
+		<img class="object-cover w-full"  src={imgSrc} alt={company} />
 	</div>
-</div>
+</article>
+
+<Modal id={`${company.toLowerCase().split(' ').join('-')}`} >
+	<h2 class="text-2xl text-amber-400 font-extrabold mb-4 ">{company}</h2>
+	<p class="text-amber-200 text-sm">{body}</p>
+	<h3 class="text-lg font-medium">Tech Stack</h3>
+	<code>
+		{stack && stack.map((tech) => <span class="text-xs text-amber-200">{tech}</span>)}
+	</code>
+</Modal>
+
+<style lang="scss">
+	.card {
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+		height: 300px;
+		transition: all ease-in-out 100ms;
+		.content {
+			background: rgba(0, 0, 0, 0.7);
+			backdrop-filter: blur(4px);
+			transition: all ease-in-out 800ms;
+
+
+			@media (max-width: 680px) {
+				background: rgba(0, 0, 0, 0.8);
+				backdrop-filter: blur(10px);
+			}
+
+			header {
+				position: absolute;
+				inset: auto auto 16px 16px;
+				transition: inset .3s .3s ease-out;
+				@media (max-width: 680px) {
+					inset: auto auto 110px 16px;
+					transition: inset .3s ease-out;		
+				}
+			}
+
+			.card-body {
+				position: absolute;
+				opacity: 0;
+				transition: opacity .3s ease-out;
+				inset: auto auto 16px 16px;
+				@media (max-width: 680px) {
+					opacity: 1;
+    				transition: opacity .5s .1s ease-in;
+				}
+			}
+			&:hover {
+				background: rgba(0, 0, 0, 0.8);
+				backdrop-filter: blur(10px);
+
+				header {
+					inset: auto auto 110px 16px;
+					transition: inset .3s ease-out;				
+				}
+				 .card-body {
+					opacity: 1;
+    				transition: opacity .5s .1s ease-in;
+				}
+			}
+		}
+
+
+		&:hover {
+			.logo-container {
+				img {
+					filter: grayscale(0);
+				}
+			}
+		}
+		
+	}
+	.img-container {
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(45deg, #751717,#000000);
+			mix-blend-mode: overlay;
+			pointer-events: none;
+		}
+
+		img {
+			filter: sepia(1) hue-rotate(330deg) saturate(2);
+			object-position: center;
+			animation: zoomEffect 10s infinite alternate ease-in-out;
+		}
+	}
+
+	.logo-container {
+
+		img {
+			filter: grayscale(1);
+		}
+	}
+	@keyframes zoomEffect {
+    0% {
+        transform: scale(1);
+		rotate: 0deg;
+    }
+    100% {
+        transform: scale(1.2);
+		rotate: 6deg;
+    }
+}
+</style>

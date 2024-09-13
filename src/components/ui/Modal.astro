@@ -1,0 +1,39 @@
+---
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+<script>
+	const openBtns = document.querySelectorAll('.open-modal');
+	openBtns.forEach((btn:HTMLButtonElement) => {
+		btn.addEventListener('click', () => {
+			const modal = document.querySelector(`#${btn.dataset.modal}`);
+			modal.classList.remove('hidden');
+		});
+	});
+
+	const closeModalBtns = document.querySelectorAll('#close-modal');
+	closeModalBtns.forEach((btn:HTMLButtonElement) => {
+
+		btn.addEventListener('click', () => {
+		  const modal = document.querySelector(`#${btn.dataset.modal}`);
+		  modal.classList.add('hidden');
+		});
+	});
+</script>
+<div
+  id={`modal-${id}`}
+  class="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-50  px-6"
+>
+  <div class="bg-crimson/25 border border-crimson p-6 rounded-lg shadow-lg max-w-lg w-full relative">
+    <button
+      data-modal={`modal-${id}`}
+      class="close-modal absolute top-2 right-2"
+      id="close-modal"
+      aria-label="Close Modal">X</button
+    >
+    <slot />
+  </div>
+</div>

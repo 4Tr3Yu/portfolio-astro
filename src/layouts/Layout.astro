@@ -1,34 +1,45 @@
 ---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Bg2 from "../components/ui/Bg.astro";
+import "@fontsource-variable/raleway";
 interface Props {
-	title: string;
+  title: string;
+  description: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Desarrollador Web Full-stack. Consultor de tecnología" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<main>
-			<slot />
-		</main>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="{Astro.props.description}"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    
+    <Header />
+    <main class="max-w-[1024px] mx-auto px-4">
+      <slot />
+    </main>
+    <Footer />
+	<Bg2 />
+  </body>
 </html>
 <style is:global>
-	:root {
-
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-
+  :root {
+    color-scheme: light dark;
+  }
+  html {
+    font-family: "Raleway Variable", system-ui, sans-serif;
+    background: #13151a;
+  }
 </style>
