@@ -6,7 +6,6 @@ interface Props {
 	title: string;
 	company: string;
 	body: {
-		short: string;
 		long: string;
 		tasks: Array<string>;
 	};
@@ -31,7 +30,7 @@ const { href, title, body, imgSrc, iconSrc, company, dates, btn, stack} = Astro.
 			</time>
 		</header>
 		<div class="card-body ">
-			<p class="text-xs text-amber-200 line-clamp-3">{body.long}</p>
+			<p class="text-sm sm:text-xs text-amber-200 line-clamp-3">{body.long}</p>
 			<button data-modal={`modal-${company.toLowerCase().split(' ').join('-')}`} class="open-modal flex justify-start items-center text-xs font-bold">Conoce más <Arrow>/</button>
 		</div>
 	</div>
@@ -41,8 +40,8 @@ const { href, title, body, imgSrc, iconSrc, company, dates, btn, stack} = Astro.
 </article>
 
 <Modal id={`${company.toLowerCase().split(' ').join('-')}`} >
-	<div class="logo-container text-left w-80 mb-6">
-		<img class=" " src={iconSrc} alt={`${company} logo`}>
+	<div class="logo-container text-left max-w-[80%] max-h-24  mb-6">
+		<img class="max-h-20" src={iconSrc} alt={`${company} logo`}>
 	</div>
 	<h3 class="text-2xl text-amber-400 font-extrabold mb-2 flex items-center">
 		{company}
@@ -52,7 +51,7 @@ const { href, title, body, imgSrc, iconSrc, company, dates, btn, stack} = Astro.
 	</h3>
 	<p class="text-amber-200/90 line text-sm mb-6">{body.long}</p>
 	<h4 class="text-lg font-medium mb-3">Stack Tecnico</h4>
-	<div class="w-full grid grid-cols-6 gap-4  mb-6">
+	<div class="w-full grid grid-cols-4 md:grid-cols-6 gap-4  mb-6">
 		{stack && stack.map((tech) => {
 			return (
 				<figure class="flex flex-col min-h-12 mr-2 items-center">

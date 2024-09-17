@@ -1,62 +1,91 @@
 ---
+import Bg from "./Bg.astro";
+import Close from "../icons/Close.astro";
+import SocialButton from "./SocialButton.astro";
+import { experienceData } from "../../lib/experience";
 interface Props {
-  id: string;
+	id: string;
 }
 
 const { id } = Astro.props;
+const buttonsStyles = (name) => {
+	const formatName = name.split(' ').join('-').toLowerCase();
+	const baseStyles = "text-xs px-3 py-2"
+	return id === formatName ? `${baseStyles} active` : baseStyles;
+};
 ---
-<script>
-	const openBtns = document.querySelectorAll('.open-modal');
-	openBtns.forEach((btn:HTMLButtonElement) => {
-		btn.addEventListener('click', () => {
-			const modal = document.querySelector(`#${btn.dataset.modal}`);
-			modal.classList.remove('hidden');
-		});
-	});
-
-	const closeModalBtns = document.querySelectorAll('#close-modal');
-	closeModalBtns.forEach((btn:HTMLButtonElement) => {
-		btn.addEventListener('click', () => {
-		  const modal = document.querySelector(`#${btn.dataset.modal}`);
-		  modal.classList.add('hidden');
-		});
-	});
-
-	const modals = document.querySelectorAll('.modal-experience');
-	modals.forEach((modal:HTMLDivElement) => {
-		modal.addEventListener('click', (e) => {
-			if (e.target === modal) {
-				modal.classList.add('hidden');
-			}
-		});
-	});
-</script>
 <div
   id={`modal-${id}`}
-  class="modal-experience fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-50  px-6"
->
-  <div class="bg-crimson/25 border border-crimson p-6 rounded-lg shadow-lg max-w-lg w-full relative max-h-[90vh] overflow-y-scroll modal-experience-dialog">
+  data-modal={id}
+  class="modal-container fixed inset-0 bg-black bg-opacity-95 flex flex-col items-center justify-center z-30 px-6 hidden shadow-lg">
+	<nav class="flex ">
+		{experienceData.map((exp) => (
+			<SocialButton extraStyles={buttonsStyles(exp.company)} >
+				{exp.company}
+			</SocialButton>
+		))}
+	</nav>
+  <div
+    class="bg-crimson/25 border border-crimson p-6 rounded-lg shadow-lg max-w-lg w-full relative max-h-[90vh] overflow-y-scroll modal-experience-dialog z-50">
     <button
       data-modal={`modal-${id}`}
-      class="close-modal fixed top-2 right-2"
+      class="close-modal sticky top-0 left-full -mr-4"
       id="close-modal"
-      aria-label="Close Modal">X</button
-    >
+      aria-label="Close Modal">
+      	<Close class="size-6" />
+    </button>
     <slot />
-  </div>
 </div>
+
+
+  <Bg modalControl="modal-control-close" idModal={`modal-${id}`} />
+</div>
+<script>
+	const body = document.querySelector("body");
+	const openBtns = document.querySelectorAll(".open-modal");
+	openBtns.forEach((btn: HTMLButtonElement) => {
+	  btn.addEventListener("click", () => {
+		const modal = document.querySelector(`#${btn.dataset.modal}`);
+		modal.classList.remove("hidden");
+		body.classList.add("modal-open");
+	  });
+	});
+  
+	const closeModalBtns = document.querySelectorAll("#close-modal");
+	closeModalBtns.forEach((btn: HTMLButtonElement) => {
+	  btn.addEventListener("click", () => {
+		const modal = document.querySelector(`#${btn.dataset.modal}`);
+		modal.classList.add("hidden");
+		body.classList.remove("modal-open");
+	  });
+	});
+  
+	const modals = document.querySelectorAll(".modal-control-close");
+	modals.forEach((modal: HTMLDivElement) => {
+	  modal.addEventListener("click", (e) => {
+		console.log(modal.dataset.modal);
+		const modalControl = document.querySelector(`#${modal.dataset.modal}`);
+		modalControl.classList.add("hidden");
+		body.classList.remove("modal-open");
+	  });
+	});
+</script>
 <style>
-	.modal-experience-dialog::-webkit-scrollbar {
-		width: 30px;
-	}
-	
-	.modal-experience-dialog::-webkit-scrollbar-track {
-		background: black;
-		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-	}
-	
-	.modal-experience-dialog::-webkit-scrollbar-thumb {
-		background: red;
-		border: 3px solid blue;
-	}
+  .modal-container {
+    transition: all 0.3s;
+  }
+  .modal-experience-dialog::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .modal-experience-dialog::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .modal-experience-dialog::-webkit-scrollbar-thumb {
+    position: absolute;
+    right: -2px;
+    background: linear-gradient(180deg, transparent 25%, rgb(86, 5, 5) 90%);
+    border-radius: 8px;
+  }
 </style>

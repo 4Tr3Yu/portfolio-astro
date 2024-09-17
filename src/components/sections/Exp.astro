@@ -1,84 +1,11 @@
 ---
 import Card from "../Card.astro";
-const EXP = [
-	{
-		title: "Desarrollador Full-stack",
-		body: "Desarrollo de interfaces de usuario con tecnologías modernas como React, Vue, Svelte y Angular.",
-		href: "https://ghost.st/",
-		imgSrc: "/images/ghost.png",
-		iconSrc: "/images/logo-ghost.svg",
-		company: "Ghost Street Interactive Studio",
-		dates: ["Sept 2023", "Feb 2024"],
-		stack: [
-			"HTML",
-			"CSS",
-			"JS",
-			"Svelte",
-			"SvelteKit",
-			"Typescript",
-			"CraftCMS",
-			"Shopify",
-			"PHP",
-			"Supabase",
-			"MySQL",
-			"Tailwind",
-			"GitLab CI/CD",
-			"Bitbucket Pipelines",
-			"AWS",
-		],
-	},
-	{
-		title: "Desarrollador Full-stack",
-		body: "Desarrollo de APIs y servicios web con tecnologías como Node.js, Express, Django y Flask.",
-		href: "https://digital.practia.global/",
-		imgSrc: "/images/practia.png",
-		iconSrc: "/images/logo-practia.png",
-		company: "Practia Global",
-		dates: ["Mar 2020", "Abr 2023"],
-	},
-	{
-		title: "Desarrollador Full-stack",
-		body: "Automatización de procesos de desarrollo, pruebas y despliegue con herramientas como Docker, Kubernetes y GitHub Actions.",
-		href: "https://www.bancoripley.cl/",
-		imgSrc: "/images/ripley.png",
-		iconSrc: "/images/logo-banco-ripley.svg",
-		company: "Banco Ripley",
-		dates: ["Feb 2019", "Mar 2020"],
-	},
-	{
-		title: "Desarrollador Front-end",
-		body: {
-			short: "Mi primer trabajo como desarrollador web, donde aprendí a trabajar en equipo y a utilizar tecnologías como Vue y Laravel, profundizando en mis conocimientos de JS y PHP.",
-			long: "Mi primer trabajo como desarrollador web, donde aprendí a trabajar en equipo y a utilizar tecnologías como Vue, Laravel, profundizando en mis conocimientos de JS, PHP y SQL. Además, tuve la oportunidad de trabajar con herramientas de automatización de pruebas y scrapping como Puppeteer y Casper. Mis habilidades con Photoshop e Illustrator también fueron de gran ayuda para el diseño de interfaces y la creación de contenido gráfico.",
-			tasks: [
-			"Diseño de maquetas y prototipos rápidos usando Vue.js",
-			"Integracion APIs en varios sitios de la empresa.",
-			"Construción de modelos y controladores para servicios de back-end de un sitio de comercio electrónico de automóviles.",
-			"Creación y aplición de rediseños con una mejor experiencia de	usuario para sitios antiguos.",
-			"Investigación de nuevas tecnologías web para mejorar proyectos existentes",
-			"Desarrollo de contenido del sitio y gráficos coordinando con redactores y diseñadores gráficos.",
-			"Integrción tecnologías de audio para sitios de radio en línea.",
-			"Diseño y construción de plantillas para campañas de correo electrónico.",
-			"Desarrollo de herramientas de scraping para extraer datos de sitios web de clientes.",	
-			],
-		},
-		href: "https://grm.cl/",
-		imgSrc: "/images/grm.png",
-		iconSrc: "/images/logo-grm.png",
-		company: "Gestión Regional de Medios",
-		dates: ["Ene 2017", "Feb 2019"],
-		stack: [
-		 "HTML", "CSS", "JS", "Vue", "PHP", "NET", "Webpack", "Laravel",
-"MySQL", "Handlebars", "Bootstrap", "Bitbucket", "Puppeteer", "Casper"
-
-		],
-	},
-];
+import { experienceData } from "../../lib/experience"
 ---
 <section class="mb-24 sm:mb-24 md:mb-48">
   <h2 class="text-4xl text-amber-400 font-extrabold mb-8">Experiencia</h2>
   <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-    {EXP.map((exp) => (
+    {experienceData.map((exp) => (
       <Card {...exp}/>
     ))}
   </div>

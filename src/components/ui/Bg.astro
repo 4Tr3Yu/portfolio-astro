@@ -1,3 +1,11 @@
+---
+interface Props {
+  modalControl?: string;
+  idModal?: string;
+}
+
+const { modalControl, idModal } = Astro.props;
+---
 <div class="fixed top-0 left-0 h-full w-full overflow-hidden -z-50">
   <div
     class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_left,#751717_1px,transparent_1px),linear-gradient(to_bottom,#751717_1px,transparent_3px)] bg-[size:80px_74px] transform rotate-45 opacity-10"></div>
@@ -8,7 +16,7 @@
     <div class="circle absolute w-full h-full top-0 left-0 bg-[radial-gradient(50%_50%_at_50%_-10%,#751717,transparent)]  "></div>
 </div>
 <div class="black-cover-left bottom-0 left-0 h-full w-full fixed -z-40"></div>
-<div class="black-cover-right bottom-0 left-0 h-full w-full fixed -z-40"></div>
+<div class={`black-cover-right bottom-0 left-0 h-full w-full fixed -z-40 ${modalControl}`} data-modal={idModal}></div>
 
 <style lang="scss">
   .black-cover-left {

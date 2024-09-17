@@ -5,6 +5,7 @@ import Mail from '../icons/Mail.astro'
 import Badge from '../ui/Badge.astro'
 import SocialButton from '../ui/SocialButton.astro'
 import ProfilePicture from '../ProfilePicture.astro'
+import Whatsapp from '../icons/Whatsapp.astro'
 ---
 <section class="jobs w-100 flex flex-wrap pt-10 mb-24 sm:pt-24 sm:mb-24 md:pt-48 md:mb-48">
 	<article class=" md:w-2/3">
@@ -13,23 +14,27 @@ import ProfilePicture from '../ProfilePicture.astro'
 			<Badge>Disponible para trabajar</Badge>
 		</header>
 		<p class="text-pretty  opacity-90 max-w-[500px] ">
-			Hola, me dicen Atre, soy un Desarrollador Full-Stack🔥 con experiencia <span class="text-amber-200/90">5 años de experiencia</span> en diversas industrias. Disfruto generar <span class="text-amber-100 font-bold">soluciones creativas</span> para puzzles complejos. Me gusta mas el <span class="bg-gradient-to-br from-red-500 to-amber-500 font-bold bg-clip-text text-transparent">frontend</span> 🚀, pero también disfruto de modelar DBs o construir APIs 🤓.
+			Hola, me dicen Atre, soy un Desarrollador Full-Stack🔥 con experiencia <span class="text-amber-200/90">6 años de experiencia</span> en diversas industrias. Busco generar <span class="text-amber-100 font-bold">soluciones creativas</span> para puzzles complejos. Me gusta mas el <span class="bg-gradient-to-br from-red-500 to-amber-500 font-bold bg-clip-text text-transparent">Front-End</span> 🚀, pero también disfruto de modelar DBs o construir APIs 🤓.
 			<p class="mb-4">
 				<a class="opacity-35 text-xs hover:animate-pulse hover:text-amber-400 hover:font-bold hover:text-lg hover:opacity-100 transition-all ease-in-out" href="/side-b">En mi tiempo libre...</a>
 			</p> 
 		</p>
 		<nav class="mb-6 sm:flex sm:gap-x-3">
-			<SocialButton href="https://www.linkedin.com/in/jorge-francisco-aguirre-concha-296121124/" >
+			<SocialButton href="https://www.linkedin.com/in/jorge-aguirre-concha/" >
 				<Linkedin class="size-6"/>
 				Linkedin
 			</SocialButton>
-			<SocialButton href="https://github.com/4Tr3Yu" icon="github">
+			<SocialButton href="https://github.com/4Tr3Yu">
 				<Github class="size-6"/>
 				Github
 			</SocialButton>
-			<SocialButton href="" icon="mail">
+			<SocialButton sendMail>
 				<Mail class="size-6"/>
 				jorgef.aguir@gmail.com
+			</SocialButton>
+			<SocialButton href="">
+				<Whatsapp class="size-6" href="https://wa.me/+56982140262"/>
+				+56 9 9214 0262
 			</SocialButton>
 		</nav>
 	</article>

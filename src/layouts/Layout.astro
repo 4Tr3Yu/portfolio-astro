@@ -25,7 +25,6 @@ const { title, description } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    
     <Header />
     <main class="max-w-[1024px] mx-auto px-4">
       <slot />
@@ -41,5 +40,8 @@ const { title, description } = Astro.props;
   html {
     font-family: "Raleway Variable", system-ui, sans-serif;
     background: #13151a;
+  }
+  body.modal-open {
+    overflow: hidden;
   }
 </style>
