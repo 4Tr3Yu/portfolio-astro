@@ -1,0 +1,26 @@
+---
+import Arrow from "./icons/Arrow.astro";
+interface Props {
+  title: string;
+  description: string;
+  company?: string;
+  images: string[];
+  link: string;
+  stack: string[];
+}
+
+const { title, description, images, company, link, stack } = Astro.props;
+---
+<article class="card relative flex justify-center items-center rounded-md overflow-hidden border border-crimson/25 bg-gradient-to-tr from-crimson/75 to-transparent">
+	<div class="content p-4 h-full w-full flex flex-col justify-end ">
+		<header>
+			<h3 class="text-lg font-semibold w-full text-amber-300 mb-0">{company}</h3>
+			<h4 class="text-md font-bold w-full mb-0">{title}</h4>
+		</header>
+		<div class="card-body ">
+			<p class="text-sm sm:text-xs text-amber-200 line-clamp-3">{description}</p>
+			<button data-modal={`modal-${company.toLowerCase().split(' ').join('-')}`} class="open-modal flex justify-start items-center text-xs font-bold">Conoce más <Arrow>/</button>
+		</div>
+	</div>
+
+</article>

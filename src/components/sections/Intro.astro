@@ -6,6 +6,7 @@ import Badge from '../ui/Badge.astro'
 import SocialButton from '../ui/SocialButton.astro'
 import ProfilePicture from '../ProfilePicture.astro'
 import Whatsapp from '../icons/Whatsapp.astro'
+import Cv from '../icons/Cv.astro'
 ---
 <section class="jobs w-100 flex flex-wrap pt-10 mb-24 sm:pt-24 sm:mb-24 md:pt-48 md:mb-48">
 	<article class=" md:w-2/3">
@@ -19,22 +20,26 @@ import Whatsapp from '../icons/Whatsapp.astro'
 				<a class="opacity-35 text-xs hover:animate-pulse hover:text-amber-400 hover:font-bold hover:text-lg hover:opacity-100 transition-all ease-in-out" href="/side-b">En mi tiempo libre...</a>
 			</p> 
 		</p>
-		<nav class="mb-6 sm:flex sm:gap-x-3">
+		<nav class="mb-6 sm:flex sm:flex-wrap sm:gap-x-3">
 			<SocialButton href="https://www.linkedin.com/in/jorge-aguirre-concha/" >
 				<Linkedin class="size-6"/>
-				Linkedin
+				LinkedIn
 			</SocialButton>
 			<SocialButton href="https://github.com/4Tr3Yu">
 				<Github class="size-6"/>
 				Github
+			</SocialButton>
+			<SocialButton href="">
+				<Whatsapp class="size-6" href="https://wa.me/+56982140262"/>
+				Whatsapp
 			</SocialButton>
 			<SocialButton sendMail>
 				<Mail class="size-6"/>
 				jorgef.aguir@gmail.com
 			</SocialButton>
 			<SocialButton href="">
-				<Whatsapp class="size-6" href="https://wa.me/+56982140262"/>
-				+56 9 9214 0262
+				<Cv class="size-6" href="https://wa.me/+56982140262"/>
+				CV
 			</SocialButton>
 		</nav>
 	</article>
