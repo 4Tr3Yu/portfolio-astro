@@ -2,6 +2,9 @@
 import Arrow from './icons/Arrow.astro';
 import External from './icons/External.astro';
 import Modal from './ui/Modal.astro';
+import ModalNav from './ui/ModalNav.astro';
+import { experienceData } from '../data/experience';
+
 interface Props {
 	title: string;
 	company: string;
@@ -18,6 +21,7 @@ interface Props {
 }
 
 const { href, title, body, imgSrc, iconSrc, company, dates, btn, stack} = Astro.props;
+const lang = "es";
 ---
 
 <article class="card relative flex justify-center items-center rounded-md overflow-hidden min- border border-red-500/25">
@@ -40,6 +44,7 @@ const { href, title, body, imgSrc, iconSrc, company, dates, btn, stack} = Astro.
 </article>
 
 <Modal id={`${company.toLowerCase().split(' ').join('-')}`} >
+	<ModalNav slot="nav" data={experienceData[lang].data} id={`${company.toLowerCase().split(' ').join('-')}`}/>
 	<div class="logo-container text-left max-w-[80%] max-h-24  mb-6">
 		<img class="max-h-20" src={iconSrc} alt={`${company} logo`}>
 	</div>

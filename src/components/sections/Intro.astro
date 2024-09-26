@@ -7,19 +7,26 @@ import SocialButton from '../ui/SocialButton.astro'
 import ProfilePicture from '../ProfilePicture.astro'
 import Whatsapp from '../icons/Whatsapp.astro'
 import Cv from '../icons/Cv.astro'
+import { introPageData } from '../../data/intro'
+
+interface Props {
+	lang: string
+}
+
+const { lang } = Astro.props
 ---
 <section class="jobs w-100 flex flex-wrap pt-10 mb-24 sm:pt-24 sm:mb-24 md:pt-48 md:mb-48">
 	<article class=" md:w-2/3">
 		<header class="flex max-sm:flex-wrap justify-start sm:items-center mb-4">
 			<h1 class="text-4xl text-amber-400 font-extrabold max-sm:w-full mb-4 sm:mb-0 sm:mr-4">Jorge Aguirre </h1>
-			<Badge>Disponible para trabajar</Badge>
+			<Badge>{introPageData[lang].cta}</Badge>
 		</header>
-		<p class="text-pretty  opacity-90 max-w-[500px] ">
-			Hola, me dicen Atre, soy un Desarrollador Full-Stack🔥 con experiencia <span class="text-amber-200/90">6 años de experiencia</span> en diversas industrias. Busco generar <span class="text-amber-100 font-bold">soluciones creativas</span> para puzzles complejos. Me gusta mas el <span class="bg-gradient-to-br from-red-500 to-amber-500 font-bold bg-clip-text text-transparent">Front-End</span> 🚀, pero también disfruto de modelar DBs o construir APIs 🤓.
-			<p class="mb-4">
-				<a class="opacity-35 text-xs hover:animate-pulse hover:text-amber-400 hover:font-bold hover:text-lg hover:opacity-100 transition-all ease-in-out" href="/side-b">En mi tiempo libre...</a>
-			</p> 
+		<p class="text-pretty  opacity-90 max-w-[500px]" set:html={introPageData[lang].intro} >
+			
 		</p>
+		<p class="mb-4">
+			<a class="opacity-35 text-xs hover:animate-pulse hover:text-amber-400 hover:font-bold hover:text-lg hover:opacity-100 transition-all ease-in-out" href="/side-b">{introPageData[lang].cta2}</a>
+		</p> 
 		<nav class="mb-6 sm:flex sm:flex-wrap sm:gap-x-3">
 			<SocialButton href="https://www.linkedin.com/in/jorge-aguirre-concha/" >
 				<Linkedin class="size-6"/>

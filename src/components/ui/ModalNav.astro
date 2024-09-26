@@ -1,0 +1,34 @@
+---
+import SocialButton from './SocialButton.astro'
+interface ExperienceItem {
+	title: string;
+	body: {
+	  long: string;
+	  tasks: string[];
+	};
+	href: string;
+	imgSrc: string;
+	iconSrc: string;
+	company: string;
+	dates: string[];
+	stack: string[];
+}
+interface Props {
+	id: string;
+	data: Array<ExperienceItem>
+}
+const { data, id } = Astro.props;
+
+const buttonsStyles = (name) => {
+	const formatName = name.split(' ').join('-').toLowerCase();
+	const baseStyles = "open-modal text-xs px-3 py-2 mx-2"
+	return id === formatName ? `${baseStyles} active` : baseStyles;
+};
+---
+<nav class="flex ">
+	{data.map((exp) => (
+		<SocialButton extraStyles={buttonsStyles(exp.company)} dataModal={`modal-${exp.company.toLowerCase().split(' ').join('-')}`}>
+			{exp.company.split(' ').map(word => word.split('')[0])}
+		</SocialButton>
+	))}
+</nav> 

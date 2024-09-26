@@ -8,23 +8,13 @@ interface Props {
 }
 
 const { id } = Astro.props;
-const buttonsStyles = (name) => {
-	const formatName = name.split(' ').join('-').toLowerCase();
-	const baseStyles = "open-modal text-xs px-3 py-2 mx-2"
-	return id === formatName ? `${baseStyles} active` : baseStyles;
-};
+
 ---
 <div
   id={`modal-${id}`}
   data-modal={id}
   class="modal-container fixed inset-0 bg-black bg-opacity-95 flex flex-col items-center justify-center z-20 px-6 hidden shadow-lg">
-	 <nav class="flex ">
-		{experienceData.map((exp) => (
-			<SocialButton extraStyles={buttonsStyles(exp.company)} dataModal={`modal-${exp.company.toLowerCase().split(' ').join('-')}`}>
-				{exp.company.split(' ').map(word => word.split('')[0])}
-			</SocialButton>
-		))}
-	</nav> 
+	 <slot name="nav" />
   <div
     class="bg-crimson/25 border border-crimson p-6 rounded-lg shadow-lg max-w-lg w-full relative max-h-[90vh] overflow-y-scroll modal-experience-dialog z-50">
     <button
