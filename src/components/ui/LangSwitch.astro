@@ -1,19 +1,49 @@
 ---
 interface Props {
-  lang: string
+  lang: string;
 }
 
-const { lang } = Astro.props
+const { lang } = Astro.props;
 ---
-
-<select
-  class="lang-switch">
-  <option value="es" selected={lang === 'es'}>ES</option>
-  <option value="en" selected={lang === 'en'}>EN</option>
-</select>
+<div class="dropdown-wrapper relative">
+  <button
+    id="dropdownToggle"
+    class="text-xs border border-crimson bg-crimson/10 py-1 px-2 rounded-full flex items-center gap-x-1 lang-switch"
+    type="button"
+    >{lang.toUpperCase()}
+    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6" > <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"></path> </svg>
+  </button>
+  
+  <div
+    id="dropdown"
+    class="z-10 hidden bg-crimson/25 absolute top-[110%] left-0 w-full border border-crimson rounded-md "
+  >
+    <ul
+      class=" text-sm text-gray-700 dark:text-gray-200"
+      aria-labelledby="dropdownDefaultButton"
+    >
+      <li>
+        <a
+          href="/"
+          class="block px-4 py-2 hover:bg-crimson/90"
+          >ES</a
+        >
+      </li>
+      <li>
+        <a
+          href="en"
+          class="block px-4 py-2 hover:bg-crimson/90"
+          >EN</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>
 <script>
-  document.querySelector('.lang-switch').addEventListener('change', (e) => {
-      const path = (e.target as HTMLSelectElement).value === 'es' ? '/' : '/en'
-      window.location.href = `${path}`
-  })
+  const dropdownControl = document.querySelector('#dropdownToggle');
+  const dropdown = document.querySelector('#dropdown');
+  dropdownControl.addEventListener('click', () => {
+    dropdown.classList.toggle('hidden');
+  });
+
 </script>
