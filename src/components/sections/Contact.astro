@@ -1,31 +1,33 @@
 ---
+import { contactData } from '../../data/contact'
 
 interface Props {
 	lang: string
 }
 
 const { lang } = Astro.props
+const { title, form } = contactData[lang]
 ---
 <section class=" mb-24 sm:mb-24 md:mb-48">
-	<h2 class="text-4xl text-amber-400 font-extrabold mb-8">Como te ayudo?</h2>
+	<h2 class="text-4xl text-amber-400 font-extrabold mb-8">{title}</h2>
 	<form action="/submit" method="POST">
 		<div class="mb-4">
-		  <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+		  <label for="name" class="block text-sm font-medium text-gray-700">{form.name}</label>
 		  <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
 		</div>
 	  
 		<div class="mb-4">
-		  <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+		  <label for="email" class="block text-sm font-medium text-gray-700">{form.email}</label>
 		  <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
 		</div>
 	  
 		<div class="mb-4">
-		  <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+		  <label for="message" class="block text-sm font-medium text-gray-700">{form.message}</label>
 		  <textarea id="message" name="message" rows="4" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
 		</div>
 	  
 		<button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-		  Send Message
+		  {form.submit}
 		</button>
 	  </form>
 </section>

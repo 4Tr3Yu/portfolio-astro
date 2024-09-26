@@ -27,7 +27,7 @@ const { title, description, lang } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <Header>
+    <Header lang={lang}>
       <LanguageSwitcher slot="lang-switch" client:load/>
     </Header>
     <main class="max-w-[1024px] mx-auto px-4">
