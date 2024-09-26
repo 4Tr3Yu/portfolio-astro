@@ -7,14 +7,17 @@ interface Props {
 }
 
 const { lang } = Astro.props
+const { title, wip, showcase, other } = proyectsData[lang]
 ---
 
 <section class=" mb-24 sm:mb-24 md:mb-48" id="projects">
-	<h2 class="text-4xl text-amber-400 font-extrabold mb-8">Portfolio</h2>
-	<h3 class="text-3xl text-amber-50">Im currently working on this, Sorry 😋</h3>
-	<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+	<h2 class="text-4xl text-amber-400 font-extrabold mb-8">{title}</h2>
+	<article class="w-full min-h-96 flex items-center justify-center text-center border border-crimson bg-crimson/10 rounded-lg">
+		<h3 class="text-2xl text-amber-50">{wip}</h3>
+	</article>
+	<!-- <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
 		{proyectsData.map((proyect) => (
 			<ProyectCard {...proyect} />
 		))}
-	</div>
+	</div> -->
 </section>
