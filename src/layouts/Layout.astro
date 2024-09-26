@@ -14,7 +14,7 @@ const { title, description, lang } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -28,7 +28,7 @@ const { title, description, lang } = Astro.props;
   </head>
   <body>
     <Header lang={lang}/>
-    <main class="max-w-[1024px] mx-auto px-4">
+    <main class="max-w-[1024px] mx-auto px-4 " >
       <slot lang={lang} />
     </main>
     <Footer />

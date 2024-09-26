@@ -12,5 +12,8 @@ const { lang } = Astro.props
   <option value="en" selected={lang === 'en'}>EN</option>
 </select>
 <script>
-
+  document.querySelector('.lang-switch').addEventListener('change', (e) => {
+      const path = (e.target as HTMLSelectElement).value === 'es' ? '/' : '/en'
+      window.location.href = `${path}`
+  })
 </script>

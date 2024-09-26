@@ -8,7 +8,7 @@ interface Props {
 const { lang } = Astro.props
 const { title, form } = contactData[lang]
 ---
-<section class=" mb-24 sm:mb-24 md:mb-48">
+<section class=" mb-24 sm:mb-24 md:mb-48" id="contact">
 	<h2 class="text-4xl text-amber-400 font-extrabold mb-8">{title}</h2>
 	<form action="/submit" method="POST">
 		<div class="mb-4">

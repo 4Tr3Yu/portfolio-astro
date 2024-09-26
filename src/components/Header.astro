@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { lang } = Astro.props
-const { home, exp, projects, contact } = navData[lang]
+const { home, exp, projects, contact, services } = navData[lang]
 ---
 <header class="backdrop-blur-sm sticky top-0 z-10">
 	<div class="flex justify-between items-center max-w-[1024px] mx-auto py-3 px-3">
@@ -16,8 +16,9 @@ const { home, exp, projects, contact } = navData[lang]
 			<Logo/>
 		</div>
 		<nav class="hidden flex-row md:flex gap-x-6 opacity-90">
-			<a href="#intro">{home}</a>
-			<a href="#jobs">{exp}</a>
+			<a href="#home">{home}</a>
+			<a href="#services">{services}</a>
+			<a href="#exp">{exp}</a>
 			<a href="#projects">{projects}</a>
 			<a href="#contact">{contact}</a>
 			<DarkModeSwitch/>

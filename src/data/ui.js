@@ -4,12 +4,14 @@ export const navData = {
 		exp: 'Experiencia',
 		projects: 'Proyectos',
 		contact: 'Contacto',
+		services: 'Servicios'
 	},
 	en: {
 		home: 'Home',
 		exp: 'Experience',
 		projects: 'Projects',
 		contact: 'Contact',
+		services: 'Services'
 	}
 }
 
