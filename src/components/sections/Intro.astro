@@ -28,24 +28,24 @@ const { lang } = Astro.props
 			<a class="opacity-35 text-xs hover:animate-pulse hover:text-amber-400 hover:font-bold hover:text-lg hover:opacity-100 transition-all ease-in-out" href="/side-b">{introPageData[lang].cta2}</a>
 		</p> 
 		<nav class="mb-6 sm:flex sm:flex-wrap sm:gap-x-3">
-			<SocialButton href="https://www.linkedin.com/in/jorge-aguirre-concha/" >
+			<SocialButton href="https://www.linkedin.com/in/jorge-aguirre-concha/" blank>
 				<Linkedin class="size-6"/>
 				LinkedIn
 			</SocialButton>
-			<SocialButton href="https://github.com/4Tr3Yu">
+			<SocialButton href="https://github.com/4Tr3Yu" blank>
 				<Github class="size-6"/>
 				Github
 			</SocialButton>
-			<SocialButton href="">
-				<Whatsapp class="size-6" href="https://wa.me/+56982140262"/>
+			<SocialButton href="https://wa.me/+56982140262" blank>
+				<Whatsapp class="size-6" />
 				Whatsapp
 			</SocialButton>
-			<SocialButton sendMail>
+			<SocialButton href="mailto:jorgef.aguir@gmail.com" cp sendMail>
 				<Mail class="size-6"/>
 				jorgef.aguir@gmail.com
 			</SocialButton>
-			<SocialButton href="">
-				<Cv class="size-6" href="https://wa.me/+56982140262"/>
+			<SocialButton href={`/files/Jorge_Aguirre-${lang}.pdf`} download={`Jorge_Aguirre-${lang}.pdf`}>
+				<Cv class="size-6"/>
 				CV
 			</SocialButton>
 		</nav>
