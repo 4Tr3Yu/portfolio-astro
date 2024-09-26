@@ -4,9 +4,31 @@ interface Props {
 	href?: string;
 	sendMail?: boolean;
 	dataModal?: string;
+	blank?: boolean;
+	download?: string;
+	cp?: boolean;
 }
-const { extraStyles, href, dataModal } = Astro.props;
+const { extraStyles, href, dataModal, blank, download, cp } = Astro.props;
 ---
-<a class={`cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium ${extraStyles}`} href={href} data-modal={dataModal ? dataModal : ""} target="_blank">
+<a class={`cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium ${extraStyles} ${cp ? "copy-link" : ""}`} href={href} data-modal={dataModal ? dataModal : ""} target={blank ? "_blank" : ""} download={download}>
 	<slot />
 </a>
+<script>
+	const lang = document.documentElement.lang;
+	console.log(lang);
+	document.querySelectorAll(".copy-link").forEach((button) => {
+		button.addEventListener("click", (e) => {
+			e.preventDefault();
+			console.log("copied");
+			const buttonContent = button.innerHTML;
+			navigator.clipboard.writeText(button.textContent);
+			button.classList.add("bg-green-500", "text-white" ,"min-w-[161px]");
+			button.innerHTML = lang === "es" ? "Copiado!" : "Copied to clipboard!";
+			setTimeout(() => {
+				button.classList.remove("bg-green-500", "text-white");
+				button.innerHTML = buttonContent;
+			}, 2000);
+		});
+	});
+
+</script>
