@@ -1,11 +1,17 @@
 ---
 import Card from "../Card.astro";
 import { experienceData } from "../../data/experience";
+
+interface Props {
+	lang: string
+}
+
+const { lang } = Astro.props
 ---
-<section class="mb-24 sm:mb-24 md:mb-48">
-  <h2 class="text-4xl text-amber-400 font-extrabold mb-8">Experiencia</h2>
+<section class="mb-24 sm:mb-24 md:mb-48" id="exp">
+  <h2 class="text-4xl text-amber-400 font-extrabold mb-8">{ experienceData[lang].title}</h2>
   <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-    {experienceData.map((exp) => (
+    {experienceData[lang].data.map((exp) => (
       <Card {...exp}/>
     ))}
   </div>

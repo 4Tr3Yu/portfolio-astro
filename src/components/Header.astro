@@ -1,5 +1,14 @@
 ---
+import { navData } from "../data/ui"
 import Logo from "./Logo.astro"
+import DarkModeSwitch from "./ui/DarkModeSwitch.astro"
+import LanguageSwitcher from "./ui/LangSwitch.astro"
+interface Props {
+	lang: string
+}
+
+const { lang } = Astro.props
+const { home, exp, projects, contact, services } = navData[lang]
 ---
 <header class="backdrop-blur-sm sticky top-0 z-10">
 	<div class="flex justify-between items-center max-w-[1024px] mx-auto py-3 px-3">
@@ -7,13 +16,13 @@ import Logo from "./Logo.astro"
 			<Logo/>
 		</div>
 		<nav class="hidden flex-row md:flex gap-x-6 opacity-90">
-			<a href="#about">Sobre Mi</a>
-			<a href="#jobs">Experiencia</a>
-			<a href="#projects">Proyectos</a>
-			<a href="#contact">Home</a>
-			<p class="toggle-btn">
-				DARK MODE TOGGLE
-			</p>
+			<a href="#home">{home}</a>
+			<a href="#services">{services}</a>
+			<a href="#exp">{exp}</a>
+			<a href="#projects">{projects}</a>
+			<a href="#contact">{contact}</a>
+			<DarkModeSwitch/>
+			<LanguageSwitcher client:load lang={lang}/>
 		</nav>
 	</div>
 </header>

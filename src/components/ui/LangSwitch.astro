@@ -1,0 +1,19 @@
+---
+interface Props {
+  lang: string
+}
+
+const { lang } = Astro.props
+---
+
+<select
+  class="lang-switch">
+  <option value="es" selected={lang === 'es'}>ES</option>
+  <option value="en" selected={lang === 'en'}>EN</option>
+</select>
+<script>
+  document.querySelector('.lang-switch').addEventListener('change', (e) => {
+      const path = (e.target as HTMLSelectElement).value === 'es' ? '/' : '/en'
+      window.location.href = `${path}`
+  })
+</script>
