@@ -2,7 +2,7 @@
 import { navData } from "../data/ui"
 import Logo from "./Logo.astro"
 import DarkModeSwitch from "./ui/DarkModeSwitch.astro"
-
+import LanguageSwitcher from "./ui/LangSwitch.astro"
 interface Props {
 	lang: string
 }
@@ -21,7 +21,7 @@ const { home, exp, projects, contact } = navData[lang]
 			<a href="#projects">{projects}</a>
 			<a href="#contact">{contact}</a>
 			<DarkModeSwitch/>
-			<slot name="lang-switch">
+			<LanguageSwitcher client:load lang={lang}/>
 		</nav>
 	</div>
 </header>

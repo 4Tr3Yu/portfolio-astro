@@ -1,6 +1,9 @@
 ---
+interface Props {
+  lang: string
+}
 
-const lang: 'es' | 'en' = 'es'
+const { lang } = Astro.props
 ---
 
 <select
