@@ -1,19 +1,26 @@
 ---
 import { proyectsData }	from "../../data/proyects.js";
 import ProyectCard from "../ProyectCard.astro";
+import SocialButton from "../ui/SocialButton.astro";
+import Github from "../icons/Github.astro";
 
 interface Props {
 	lang: string
 }
 
 const { lang } = Astro.props
-const { title, wip, showcase, other } = proyectsData[lang]
+const { title, wip, wipSmall, showcase, other } = proyectsData[lang]
 ---
 
 <section class=" mb-24 sm:mb-24 md:mb-48" id="projects">
 	<h2 class="text-4xl text-amber-400 font-extrabold mb-8">{title}</h2>
-	<article class="w-full min-h-96 flex items-center justify-center text-center border border-crimson bg-crimson/10 rounded-lg">
-		<h3 class="text-2xl text-amber-50">{wip}</h3>
+	<article class="w-full min-h-96 flex flex-col items-center justify-center text-center border border-crimson bg-crimson/10 rounded-lg">
+		<h3 class="text-2xl text-amber-50 mb-2">{wip}</h3>
+		<p class="text-sm mb-4">{wipSmall}</p>
+		<SocialButton href="https://github.com/4Tr3Yu" blank>
+			<Github class="size-6"/>
+			Github
+		</SocialButton>
 	</article>
 	<!-- <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
 		{proyectsData.map((proyect) => (
