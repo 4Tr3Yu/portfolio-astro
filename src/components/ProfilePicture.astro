@@ -1,11 +1,73 @@
 <div {...Astro.props} >
-	<div class="relative size-64 profile-container">
-		<img src="/images/ja.jpg" alt="Jorge Aguirre" class="w-100 h-100 object-cover profile-image"  />
+	<div class="hexagons max-w-80 relative">
+
+		<div class="small-hexagon first"></div>
+		<div class="small-hexagon second"></div>
+		<div class="small-hexagon third"></div>
+		<div class="small-hexagon fourth"></div>
+		<div class="hexagon profile-container" >
+				<img src="/images/ja.jpg" alt="Jorge Aguirre" class="w-full h-full object-cover profile-image"  />
+		</div>
 	</div>
+
+	<!-- <div class="relative size-64 profile-container">
+		<img src="/images/ja.jpg" alt="Jorge Aguirre" class="w-100 h-100 object-cover profile-image"  />
+	</div> -->
 </div>
-<style lang="scss">
+<style lang="scss" scoped>
+	.hexagon {
+		width: 100%;
+		height: 100%;
+		background-color: #751717;
+		clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+	}
+	.hexagons {
 
-
+		.small-hexagon {
+			transition: all 0.5s ease-in-out;
+			width: 75px;
+			height: 75px;
+			background-image: linear-gradient(to bottom right,#751717, transparent);
+			border: #751717 1px solid;
+			position: absolute;
+			clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+			&.first {
+				top: -25px;
+				left: -25px;
+			}
+			&.second {
+				width: 50px;
+				height: 50px;
+				top: -65px;
+				left: 35px;
+			}
+			&.third {
+	
+				bottom: -25px;
+				right: -25px;
+			}
+			&.fourth {
+				width: 50px;
+				height: 50px;
+				bottom: -65px;
+				right: 35px;
+			}
+		}
+		&:hover {
+			.small-hexagon {
+				opacity: 0.5;
+				&.second,
+				&.first {
+					transform: translate(400%, 0%) scale(1.05) ;
+				}
+				&.third,
+				&.fourth {
+					transform: translate(-400%, 0%) scale(1.05) ;
+				}
+			
+			}
+		}
+	}
 	.profile-image {
 		filter: sepia(1) hue-rotate(330deg) saturate(2);
 		transition: transform 0.5s ease;
@@ -13,7 +75,7 @@
 		perspective: 1000px;
 		border: 5px solid #751717;
 		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-		border-radius: 50%;
+		//border-radius: 50%;
 		&:hover {
 			transform: rotateY(15deg) rotateX(5deg) scale(1.05);
 		}
@@ -29,7 +91,7 @@
 		background: linear-gradient(45deg, #751717,#000000);
 		mix-blend-mode: overlay;
 		pointer-events: none;
-		border-radius: 50%;
+		//border-radius: 50%;
 
 	}
 </style>
