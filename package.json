@@ -7,7 +7,7 @@
     "email": "jorgef.aguir@gmail.com",
     "url": "https://atre.dev",
     "github": "https://github.com/4Tr3Yu/"
-  },,
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

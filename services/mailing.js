@@ -1,22 +1,21 @@
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-	host: "gmail",
-	port: 587,
-	secure: false, // true for port 465, false for other ports
+	host: "smtp.gmail.com",
+	port: 465,
+	secure: true, // true for port 465, false for other ports
 	auth: {
 	  user: process.env.USER_MAIL, 
 	  pass: process.env.PASS_MAIL,
 	},
 });
 
-const main = async () => {
+const main = async (name, email, message) => {
 	const info = await transporter.sendMail({
-	  from: '"Fred Foo 👻" <jorgef.aguir@gmail.com>',
+	  from: 'Atre.dev" <contact@atre.dev>',
 	  to: "jorgef.aguir@gmail.com",
-	  subject: "Hello ✔",
-	  text: "Hello world?",
-	  html: "<b>Hello world?</b>",
+	  subject: `Portfolio contact | ${name}`,
+	  html:  `<b>${name}</b> says: </br> ${message}`,
 	});
 	console.log("Message sent: %s", info.messageId);
 	return info;
