@@ -1,4 +1,4 @@
-import main from "../services/mailing";
+const main = require("../services/main");
 export default async function contact(req, res) {
 	const { method } = req;
 	const messages = {
