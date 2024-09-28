@@ -7,39 +7,45 @@ interface Props {
 }
 
 const { lang } = Astro.props
-const { title, form, sorryMsg, btnText } = contactData[lang]
+const { title, form, sorryMsg, btnText, welcomeText } = contactData[lang]
 ---
-<section class=" mb-24 sm:mb-24 md:mb-48" id="contact">
-	<h2 class="text-4xl text-amber-400 font-extrabold mb-8">{title}</h2>
-	<form method="POST" id="contact-form">
-		<div class="mb-4">
-		  <label for="name" class="block text-sm font-medium text-gray-700">{form.name}</label>
-		  <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
-		</div>
-	  
-		<div class="mb-4">
-		  <label for="email" class="block text-sm font-medium text-gray-700">{form.email}</label>
-		  <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
-		</div>
-	  
-		<div class="mb-4">
-		  <label for="message" class="block text-sm font-medium text-gray-700">{form.message}</label>
-		  <textarea id="message" name="message" rows="4" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
-		</div>
-
-		<input type="hidden" id="lang" value={lang}>
-	  
-		<button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-		  {form.submit}
-		</button>
-	  </form>
-	  <article id="resolve-box" class="hidden">
-		<p id="response-message"></p>
-		<p id="error-message" class="hidden">{sorryMsg}</p>
-		<SocialButton>
-			{btnText}
-		</SocialButton>
-	  </article>
+<section class=" mb-24 sm:mb-24 md:mb-48 flex flex-wrap" id="contact">
+	<article class="md:w-1/2 relative flex flex-col px-12 items-center justify-center">
+		<div class="small-hexagon"></div>
+		<h2 class="text-4xl md:text-6xl text-amber-400 font-extrabold mb-8">{title}</h2>
+		<p>{welcomeText} 😊</p>
+	</article>
+	<section class="w-full md:w-1/2 ">
+		<form method="POST" id="contact-form" class="w-full border border-crimson bg-gradient-to-tl from-crimson/35 to-transparent rounded-md p-10">
+			<div class="mb-8">
+			 
+			  <input type="text" id="name" name="name" required class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm" placeholder={form.name}/>
+			</div>
+		  
+			<div class="mb-8">
+			 
+			  <input type="email" id="email" name="email" required class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm" placeholder={form.email}/>
+			</div>
+		  
+			<div class="mb-4">
+			  <label for="message" class="pl-2 text-white opacity-55">{form.message}</label>
+			  <textarea id="message" name="message" rows="4" required class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm">
+			</textarea>
+			</div>
+	
+			<input type="hidden" id="lang" value={lang}>
+			<SocialButton>
+				<button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">{form.submit}</button>
+			</SocialButton>
+		  </form>
+		  <article id="resolve-box" class="w-full border border-crimson bg-gradient-to-tl from-crimson/35 to-transparent rounded-md p-10 hidden">
+			<p id="response-message" class="mb-2 text-lg opacity-85"></p>
+			<p id="error-message" class="mb-4 text-sm opacity-50 hidden">{sorryMsg}</p>
+			<SocialButton>
+				{btnText}
+			</SocialButton>
+		  </article>
+	</section>
 </section>
 <script>
 	const $ = (element) => document.querySelector(element); 
