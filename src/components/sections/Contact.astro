@@ -1,4 +1,5 @@
 ---
+import SocialButton from '../ui/SocialButton.astro'
 import { contactData } from '../../data/contact'
 
 interface Props {
@@ -6,7 +7,7 @@ interface Props {
 }
 
 const { lang } = Astro.props
-const { title, form, sorryMsg } = contactData[lang]
+const { title, form, sorryMsg, btnText } = contactData[lang]
 ---
 <section class=" mb-24 sm:mb-24 md:mb-48" id="contact">
 	<h2 class="text-4xl text-amber-400 font-extrabold mb-8">{title}</h2>
@@ -33,19 +34,30 @@ const { title, form, sorryMsg } = contactData[lang]
 		</button>
 	  </form>
 	  <article id="resolve-box" class="hidden">
-		<p>Error: <span id="error-message"></span></p>
-		<p>{sorryMsg}</p>
+		<p id="response-message"></p>
+		<p id="error-message" class="hidden">{sorryMsg}</p>
+		<SocialButton>
+			{btnText}
+		</SocialButton>
 	  </article>
 </section>
 <script>
 	const $ = (element) => document.querySelector(element); 
 	const form = $('#contact-form');
+	const resolveBox = $('#resolve-box');
+	const responseMsgConatiner = $('#response-message');
+	const errorMsgContainer = $('#error-message');
 	
 	const handleFormResponse = (status, response) => {
+		form.classList.add('hidden');
+		resolveBox.classList.remove('hidden');
 		if (status === 'error') {
-			// do stuff
+			responseMsgConatiner.textContent = response.message;
+			errorMsgContainer.classList.remove('hidden');
+		} else {
+			responseMsgConatiner.textContent = response.message;
 		}
-		// stuff for success
+		
 	}
 
 
@@ -66,6 +78,12 @@ const { title, form, sorryMsg } = contactData[lang]
 				},
 				body: JSON.stringify(formData)
 			})
+			const data = await response.json();
+			if (response.ok) {
+				handleFormResponse('success', data);
+			} else {
+				handleFormResponse('error', data);
+			}
 	
 		} catch (error) {
 			console.error(error);
