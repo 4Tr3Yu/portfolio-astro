@@ -7,7 +7,7 @@ export const contactData = {
 			message: 'Mensaje',
 			submit: 'Enviar',
 		},
-	},
+		sorryMsg: 'Lo siento, no se pudo enviar el mensaje, por favor intenta más tarde.'	},
 	en: {
 		title: 'How can I help?',
 		form: {
@@ -15,6 +15,7 @@ export const contactData = {
 			email: 'Email',
 			message: 'Message',
 			submit: 'Send',
-		}
+		},
+		sorryMsg: 'Sorry, the message could not be sent, please try again later.'
 	}
 }

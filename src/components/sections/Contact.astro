@@ -6,11 +6,11 @@ interface Props {
 }
 
 const { lang } = Astro.props
-const { title, form } = contactData[lang]
+const { title, form, sorryMsg } = contactData[lang]
 ---
 <section class=" mb-24 sm:mb-24 md:mb-48" id="contact">
 	<h2 class="text-4xl text-amber-400 font-extrabold mb-8">{title}</h2>
-	<form action="/submit" method="POST">
+	<form method="POST" id="contact-form">
 		<div class="mb-4">
 		  <label for="name" class="block text-sm font-medium text-gray-700">{form.name}</label>
 		  <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
@@ -25,9 +25,52 @@ const { title, form } = contactData[lang]
 		  <label for="message" class="block text-sm font-medium text-gray-700">{form.message}</label>
 		  <textarea id="message" name="message" rows="4" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
 		</div>
+
+		<input type="hidden" id="lang" value={lang}>
 	  
 		<button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 		  {form.submit}
 		</button>
 	  </form>
+	  <article id="resolve-box" class="hidden">
+		<p>Error: <span id="error-message"></span></p>
+		<p>{sorryMsg}</p>
+	  </article>
 </section>
+<script>
+	const $ = (element) => document.querySelector(element); 
+	const form = $('#contact-form');
+	
+	const handleFormResponse = (status, response) => {
+		if (status === 'error') {
+			// do stuff
+		}
+		// stuff for success
+	}
+
+
+	form.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		const formData = {
+			name: $('#name').value,
+			email: $('#email').value,
+			message: $('#message').value,
+			lang: $('#lang').value
+		}
+
+		try {
+			const response = await fetch('/api/contact', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(formData)
+			})
+	
+		} catch (error) {
+			console.error(error);
+			handleFormResponse('error', error);
+		}
+	});
+
+</script>
