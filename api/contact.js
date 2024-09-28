@@ -1,3 +1,4 @@
+import main from "../services/mailing";
 export default async function contact(req, res) {
 	const { method } = req;
 	const messages = {
@@ -19,7 +20,7 @@ export default async function contact(req, res) {
 		const defaultLang = lang || "es";
 		
 		if ( !name || !email || !message ) {
-			return res.status(406).json({ error: messages.missingFields[defaultLang] });
+			return res.status(406).json({ status: "error", error: messages.missingFields[defaultLang] });
 		}
 
 		console.log("Name: ", name);
@@ -27,10 +28,18 @@ export default async function contact(req, res) {
 		console.log("Message: ", message);
 		console.log("Lang: ", lang);
 
-		return res.status(200).json({ status: "success", message: messages.success[defaultLang] });
+		try {
+			const res = await main();
+			console.log("Response: ", res);
+			return res.status(200).json({ status: "success", message: messages.success[defaultLang] });
+		} catch (error) {
+			console.log("Error: ", error);
+			return res.status(500).json({ status: "error", error: error.message });
+		}
+
 	} 
-	
+
 	res.setHeader("Allow", ["POST"]);
-	return res.status(405).json({ error: messages.wrongMethod[defaultLang] });
+	return res.status(405).json({  status: "error", error: messages.wrongMethod[defaultLang] });
 	
 }
