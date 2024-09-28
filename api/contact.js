@@ -23,13 +23,8 @@ export default async function contact(req, res) {
 			return res.status(406).json({ status: "error", error: messages.missingFields[defaultLang] });
 		}
 
-		console.log("Name: ", name);
-		console.log("Email: ", email);
-		console.log("Message: ", message);
-		console.log("Lang: ", lang);
-
 		try {
-			const res = await main();
+			const res = await main(name, email, message);
 			console.log("Response: ", res);
 			return res.status(200).json({ status: "success", message: messages.success[defaultLang] });
 		} catch (error) {
