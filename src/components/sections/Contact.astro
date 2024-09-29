@@ -34,9 +34,7 @@ const { title, form, sorryMsg, btnText, welcomeText } = contactData[lang]
 			</div>
 	
 			<input type="hidden" id="lang" value={lang}>
-			<SocialButton>
-				<button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">{form.submit}</button>
-			</SocialButton>
+			<button type="submit" class="cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium">{form.submit}</button>
 		  </form>
 		  <article id="resolve-box" class="w-full border border-crimson bg-gradient-to-tl from-crimson/35 to-transparent rounded-md p-10 hidden">
 			<p id="response-message" class="mb-2 text-lg opacity-85"></p>

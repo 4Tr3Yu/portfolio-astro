@@ -1,4 +1,4 @@
-import main from "../services/mailing";
+import main from "../services/mailing.js";
 export default async function contact(req, res) {
 	const { method } = req;
 	const messages = {
