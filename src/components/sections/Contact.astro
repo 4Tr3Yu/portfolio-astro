@@ -34,14 +34,13 @@ const { title, form, sorryMsg, btnText, welcomeText } = contactData[lang]
 			</div>
 	
 			<input type="hidden" id="lang" value={lang}>
-			<button type="submit" class="cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium">{form.submit}</button>
+			<button type="submit" class="w-full cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium">{form.submit}</button>
 		  </form>
 		  <article id="resolve-box" class="w-full border border-crimson bg-gradient-to-tl from-crimson/35 to-transparent rounded-md p-10 hidden">
 			<p id="response-message" class="mb-2 text-lg opacity-85"></p>
 			<p id="error-message" class="mb-4 text-sm opacity-50 hidden">{sorryMsg}</p>
-			<SocialButton>
-				{btnText}
-			</SocialButton>
+
+			<button type="submit" class="w-full cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium">{btnText}</button>
 		  </article>
 	</section>
 </section>
@@ -51,7 +50,7 @@ const { title, form, sorryMsg, btnText, welcomeText } = contactData[lang]
 	const resolveBox = $('#resolve-box');
 	const responseMsgConatiner = $('#response-message');
 	const errorMsgContainer = $('#error-message');
-	
+	const retryBtn = $('#retry-btn');
 	const handleFormResponse = (status, response) => {
 		form.classList.add('hidden');
 		resolveBox.classList.remove('hidden');
@@ -90,7 +89,6 @@ const { title, form, sorryMsg, btnText, welcomeText } = contactData[lang]
 			}
 	
 		} catch (error) {
-			console.error(error);
 			handleFormResponse('error', error);
 		}
 	});

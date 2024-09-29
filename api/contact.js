@@ -24,16 +24,12 @@ export default async function contact(req, res) {
 		}
 
 		try {
-			const res = await main(name, email, message);
-			console.log("Response: ", res);
-			return res.status(200).json({ status: "success", message: messages.success[defaultLang] });
+			const result = await main(name, email, message);
+			return res.status(200).json({ status: "success", message: messages.success[defaultLang], result });
 		} catch (error) {
-			console.log("Error: ", error);
 			return res.status(500).json({ status: "error", error: error.message });
 		}
-
 	} 
-
 	res.setHeader("Allow", ["POST"]);
 	return res.status(405).json({  status: "error", error: messages.wrongMethod[defaultLang] });
 	

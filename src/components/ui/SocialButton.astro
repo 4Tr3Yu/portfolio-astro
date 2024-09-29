@@ -7,10 +7,11 @@ interface Props {
 	blank?: boolean;
 	download?: string;
 	cp?: boolean;
+	id?: string;
 }
-const { extraStyles, href, dataModal, blank, download, cp } = Astro.props;
+const { extraStyles, href, dataModal, blank, download, cp, id } = Astro.props;
 ---
-<a class={`cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium ${extraStyles} ${cp ? "copy-link" : ""}`} href={href} data-modal={dataModal ? dataModal : ""} target={blank ? "_blank" : ""} download={download}>
+<a id={id} class={`cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium ${extraStyles} ${cp ? "copy-link" : ""}`} href={href} data-modal={dataModal ? dataModal : ""} target={blank ? "_blank" : ""} download={download}>
 	<slot />
 </a>
 <script>
