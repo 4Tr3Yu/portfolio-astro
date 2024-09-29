@@ -1,8 +1,5 @@
 import main from "../services/mailing.js";
 export default async function contact(req, res) {
-	console.log("Sending mail, contact.js");
-	console.log("user: ", process.env.USER_MAIL);
-	console.log("pass: ", process.env.PASS_MAIL);
 	const { method } = req;
 	const messages = {
 		missingFields: {

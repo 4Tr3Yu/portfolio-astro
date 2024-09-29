@@ -6,15 +6,11 @@ const transporter = nodemailer.createTransport({
 	secure: true, // true for port 465, false for other ports
 	auth: {
 	  user: process.env.USER_MAIL, 
-	  pass: process.env.PASS_MAIL,
+	  pass: process.env.USER_PASS,
 	},
 });
 
 const main = async (name, email, message) => {
-	console.log("Sending mail, mailing.js");
-	console.log("User: ", process.env.USER_MAIL);
-	console.log("Pass: ", process.env.PASS_MAIL);
-
 	const info = await transporter.sendMail({
 	  from: 'Atre.dev" <contact@atre.dev>',
 	  to: "jorgef.aguir@gmail.com",
