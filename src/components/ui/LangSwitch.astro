@@ -1,11 +1,12 @@
 ---
 interface Props {
   lang: string;
+  classes?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, classes } = Astro.props;
 ---
-<div class="dropdown-wrapper relative">
+<div class=`dropdown-wrapper relative ${classes}`>
   <button
     id="dropdownToggle"
     class="text-xs border border-crimson bg-crimson/10 py-1 px-2 rounded-full flex items-center gap-x-1 lang-switch"

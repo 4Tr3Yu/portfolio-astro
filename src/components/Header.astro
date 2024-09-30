@@ -17,13 +17,14 @@ const { home, exp, projects, contact, services } = navData[lang]
 		</div>
 		<nav class="hidden flex-row md:flex gap-x-6 opacity-90">
 			<a href="#home">{home}</a>
-			<a href="#services">{services}</a>
+			<!-- <a href="#services">{services}</a> -->
 			<a href="#exp">{exp}</a>
 			<a href="#projects">{projects}</a>
 			<a href="#contact">{contact}</a>
 			<DarkModeSwitch/>
 			<LanguageSwitcher lang={lang}/>
 		</nav>
+		<LanguageSwitcher lang={lang} classes="md:hidden"/>
 	</div>
 </header>
 <style lang="scss">

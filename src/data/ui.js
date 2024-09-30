@@ -18,7 +18,7 @@ export const navData = {
 export const footerData = {
 	es: {
 		credits: 'Hecho con ❤️ por Atre',
-		copy: 'Atre.dev - Desarranllondo desde el 2017',
+		copy: 'Atre.dev - Desarrollando desde el 2017',
 	},
 	en: {
 		credits: 'Made with	❤️ by Atre',
