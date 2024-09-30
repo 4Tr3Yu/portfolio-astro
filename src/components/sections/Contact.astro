@@ -10,12 +10,12 @@ const { lang } = Astro.props
 const { title, form, sorryMsg, btnText, welcomeText } = contactData[lang]
 ---
 <section class=" mb-24 sm:mb-24 md:mb-48 flex flex-wrap" id="contact">
-	<article class="md:w-1/2 relative flex flex-col px-12 items-center justify-center">
+	<article class="sm:w-1/2 relative sm:flex sm:flex-col sm:px-12 items-center justify-center mb-8">
 		<div class="small-hexagon"></div>
 		<h2 class="text-4xl md:text-6xl text-amber-400 font-extrabold mb-8">{title}</h2>
 		<p>{welcomeText} 😊</p>
 	</article>
-	<section class="w-full md:w-1/2 ">
+	<section class="w-full sm:w-1/2 ">
 		<form method="POST" id="contact-form" class="w-full border border-crimson bg-gradient-to-tl from-crimson/35 to-transparent rounded-md p-10">
 			<div class="mb-8">
 			 
@@ -36,11 +36,11 @@ const { title, form, sorryMsg, btnText, welcomeText } = contactData[lang]
 			<input type="hidden" id="lang" value={lang}>
 			<button type="submit" class="w-full cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium">{form.submit}</button>
 		  </form>
-		  <article id="resolve-box" class="w-full border border-crimson bg-gradient-to-tl from-crimson/35 to-transparent rounded-md p-10 hidden">
+		  <article id="resolve-box" class="w-full border border-crimson bg-gradient-to-tl from-crimson/35 to-transparent rounded-md p-10 hidden text-center">
 			<p id="response-message" class="mb-2 text-lg opacity-85"></p>
 			<p id="error-message" class="mb-4 text-sm opacity-50 hidden">{sorryMsg}</p>
 
-			<button type="submit" class="w-full cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium">{btnText}</button>
+			<!-- <button type="submit" class="w-full cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium">{btnText}</button> -->
 		  </article>
 	</section>
 </section>
