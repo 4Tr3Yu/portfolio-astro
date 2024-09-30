@@ -17,19 +17,16 @@ const { title, form, sorryMsg, btnText, welcomeText } = contactData[lang]
 	<section class="w-full sm:w-1/2 ">
 		<form method="POST" id="contact-form" class="w-full border border-crimson bg-gradient-to-tl from-crimson/35 to-transparent rounded-md p-10">
 			<div class="mb-8">
-			 
-			  <input type="text" id="name" name="name" required class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm" placeholder={form.name}/>
+			  <input type="text" id="name" name="name" autocomplete="name" required class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm" placeholder={form.name}/>
 			</div>
 		  
 			<div class="mb-8">
-			 
-			  <input type="email" id="email" name="email" required class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm" placeholder={form.email}/>
+			  <input type="email" id="email" name="email" autocomplete="email" required class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm" placeholder={form.email}/>
 			</div>
 		  
 			<div class="mb-4">
 			  <label for="message" class="pl-2 text-white opacity-55">{form.message}</label>
-			  <textarea id="message" name="message" rows="4" required class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm">
-			</textarea>
+			  <textarea id="message" name="message" rows="4" required class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm"></textarea>
 			</div>
 	
 			<input type="hidden" id="lang" value={lang}>

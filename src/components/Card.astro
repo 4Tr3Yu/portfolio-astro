@@ -60,7 +60,7 @@ const lang = "es";
 		{stack && stack.map((tech) => {
 			return (
 				<figure class="flex flex-col min-h-12 mr-2 items-center">
-					<img class="w-6 mb-2 flex-auto" src={`./icons/${tech.toLowerCase()}.svg`} alt={tech} />
+					<img class="w-6 mb-2 flex-auto" loading="lazy" src={`./icons/${tech.toLowerCase()}.svg`} alt={tech} />
 					<figcaption class="text-xs">{tech} </figcaption>
 				</figure>
 			)
