@@ -55,7 +55,7 @@ const lang = "es";
 		</a>
 	</h3>
 	<p class="text-amber-200/90 line text-sm mb-6">{body.long}</p>
-	<h4 class="text-lg font-medium mb-3">Stack Tecnico</h4>
+	<h4 class="text-lg font-medium mb-3">Stack</h4>
 	<div class="w-full grid grid-cols-4 md:grid-cols-6 gap-4  mb-6">
 		{stack && stack.map((tech) => {
 			return (
@@ -66,7 +66,7 @@ const lang = "es";
 			)
 		})}
 	</div>
-	<h4 class="text-lg font-medium mb-3">Tareas destacadas</h4>
+	<h4 class="text-lg font-medium mb-3">{lang === 'es' ? "Tareas destacadas" : "Highlights"}</h4>
 	<ul class="text-sm mb-6 list-disc pl-5">
 		{body.tasks && body.tasks.map((task) => <li class="mb-2">{task}</li>)}
 	</ul>

@@ -1,8 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Temp from '../components/sections/sideb/Temp.astro';
+const lang = 'es';
 ---
-<Layout title='Atre.dev | Full-stack Web Developer' description='Desarrollador Web Full-stack. Consultor de tecnología' lang='es'>
+<Layout title='Atre.dev | Full-stack Web Developer' description='Desarrollador Web Full-stack. Consultor de tecnología' lang={lang}>
 	<h1 class="text-4xl text-amber-400 font-extrabold max-sm:w-full mb-4 sm:mb-0 sm:mr-4">4Tr3Yu </h1>
+	<Temp lang={lang}/>
 </Layout>
 
 <style>
