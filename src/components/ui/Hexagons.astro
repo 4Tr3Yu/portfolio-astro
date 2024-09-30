@@ -1,0 +1,65 @@
+<div class="hexagons max-w-80 relative">
+
+	<div class="small-hexagon first"></div>
+	<div class="small-hexagon second"></div>
+	<div class="small-hexagon third"></div>
+	<div class="small-hexagon fourth"></div>
+	<div class="hexagon profile-container" >
+			<slot/>
+</div>
+<style lang="scss" scoped>
+	.hexagon {
+		width: 100%;
+		height: 100%;
+		background-color: #751717;
+		clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+	}
+	.hexagons {
+
+		.small-hexagon {
+			transition: all 0.5s ease-in-out;
+			width: 75px;
+			height: 75px;
+			background-image: linear-gradient(to bottom right,#751717, transparent);
+			border: #751717 1px solid;
+			position: absolute;
+			clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+			&.first {
+				top: -25px;
+				left: -25px;
+			}
+			&.second {
+				width: 50px;
+				height: 50px;
+				top: -65px;
+				left: 35px;
+			}
+			&.third {
+	
+				bottom: -25px;
+				right: -25px;
+			}
+			&.fourth {
+				width: 50px;
+				height: 50px;
+				bottom: -65px;
+				right: 35px;
+			}
+		}
+		&:hover {
+			.small-hexagon {
+				opacity: 0.5;
+				&.second,
+				&.first {
+					transform: translate(400%, 0%) scale(1.05) ;
+				}
+				&.third,
+				&.fourth {
+					transform: translate(-400%, 0%) scale(1.05) ;
+				}
+			
+			}
+		}
+	}
+
+</style>

@@ -3,7 +3,6 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Bg2 from "../components/ui/Bg.astro";
 import "@fontsource-variable/raleway";
-import LanguageSwitcher from "../components/ui/LangSwitch.astro";
 interface Props {
   title: string;
   description: string;
@@ -31,7 +30,7 @@ const { title, description, lang } = Astro.props;
     <main class="max-w-[1024px] mx-auto px-4 " >
       <slot lang={lang} />
     </main>
-    <Footer />
+    <Footer lang={lang}/>
 	<Bg2 />
   </body>
 </html>

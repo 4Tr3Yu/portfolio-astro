@@ -1,3 +1,12 @@
-<footer>
-	
+---
+import { footerData } from "../data/ui";
+
+interface Props {
+	lang: string
+}
+
+const { lang } = Astro.props
+---
+<footer class="bg-amber-400 text-center text-black/90 py-3">
+		<p class="text-xs font-bold m-0">{footerData[lang].copy}</p>
 </footer>

@@ -1,0 +1,12 @@
+---
+import { servicesData } from "../../data/services"
+interface Props {
+	lang: string
+}
+
+const { lang } = Astro.props
+---
+<section class="mb-24 sm:mb-24 md:mb-48" id="services">
+	<h2 class="text-4xl text-amber-400 font-extrabold mb-8">{ servicesData[lang].title}</h2>
+	
+  </section>
