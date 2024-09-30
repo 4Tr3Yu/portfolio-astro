@@ -1,0 +1,26 @@
+---
+interface Props {
+	hexCalsses?: string
+	containerClasses?: string
+}
+const { hexCalsses, containerClasses } = Astro.props
+---
+<div class={`hexagon-container flex justify-center items-center bg-amber-400 ${hexCalsses}`}>
+	<slot/>
+</div>
+<style lang="scss" scoped>
+
+
+
+	.hexagon-container {
+		transition: all 0.5s ease-in-out;
+
+		clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+
+		&:hover {
+	
+		}
+	}
+	
+
+</style>

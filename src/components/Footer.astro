@@ -1,4 +1,8 @@
 ---
+import Hexagon from "./ui/Hexagon.astro";
+import Github from "./icons/Github.astro";
+import Linkedin from "./icons/Linkedin.astro";
+import Whatsapp from "./icons/Whatsapp.astro";
 import { footerData } from "../data/ui";
 
 interface Props {
@@ -7,6 +11,24 @@ interface Props {
 
 const { lang } = Astro.props
 ---
-<footer class="bg-amber-400 text-center text-black/90 py-3">
-		<p class="text-xs font-bold m-0">{footerData[lang].copy}</p>
+<footer class="bg-amber-400 relative  text-center text-black/90 py-3">
+	<div class="hex-container absolute -top-11 left-[50%] flex flex-wrap items-baseline gap-1">
+		<Hexagon hexCalsses="bg-amber-400 w-12 h-12"  >
+			<a href="https://github.com/4Tr3Yu">
+				<Github/>
+			</a>
+		</Hexagon>
+		<Hexagon hexCalsses="bg-amber-400 w-14 h-14">
+			<a href="https://www.linkedin.com/in/jorge-aguirre-concha/">
+				<Linkedin/>
+			</a>
+		</Hexagon>
+		<Hexagon hexCalsses="bg-amber-400 w-10 h-10" >
+			<a href="https://wa.me/+56982140262">
+				<Whatsapp/>
+			</a>
+		</Hexagon>
+	</div>
+
+	<p class="text-xs font-bold m-0">{footerData[lang].copy}</p>
 </footer>
