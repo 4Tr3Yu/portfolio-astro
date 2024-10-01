@@ -11,9 +11,7 @@ const lang = 'es';
 		<div class="border border-crimson">
 			<div id="reader" style="width: 300px; height: 300px;"></div>
 		</div>
-	<!-- 	<button class="p-4 border border-crimson rounded-md mr-4 " id="start">Start Scanning</button> -->
 		<button class="p-4 border border-crimson rounded-md mr-4 " id="start-qr">Start QR Scanning</button>
-		<buuton class="p-4 border border-crimson rounded-md mr-4" id="stop">Stop Scanning</buuton>	
 		<div id="result"></div>
 	</div>
 </Layout>
@@ -47,6 +45,5 @@ const qrCodeErrorCallback = (errorMessage) => {
     });
 }
 
-document.getElementById('start').addEventListener('click', startCamera);
 document.getElementById('start-qr').addEventListener('click', startQr);
 </script>
