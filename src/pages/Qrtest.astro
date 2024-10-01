@@ -1,8 +1,14 @@
-<div class="w-full">
-    <video id="video" width="300" height="300" autoplay></video>
-    <button id="start">Start Scanning</button>
-    <div id="result"></div>
-</div>
+---
+import Layout from '../layouts/Layout.astro';
+const lang = 'es';
+---
+<Layout title='Atre.dev | Full-stack Web Developer' description='Desarrollador Web Full-stack. Consultor de tecnología' lang={lang}>
+	<div class="w-full">
+		<video id="video" width="300" height="300" autoplay></video>
+		<button id="start">Start Scanning</button>
+		<div id="result"></div>
+	</div>
+</Layout>
 <script>
     const video = document.getElementById('video') as HTMLVideoElement;
 const resultDiv = document.getElementById('result');
