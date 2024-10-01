@@ -1,0 +1,25 @@
+<div>
+    <video id="video" width="300" height="300" autoplay></video>
+    <button id="start">Start Scanning</button>
+    <div id="result"></div>
+</div>
+<script>
+    const video = document.getElementById('video') as HTMLVideoElement;
+const resultDiv = document.getElementById('result');
+
+async function startCamera() {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+    video.srcObject = stream;
+    video.setAttribute('playsinline', 'true'); // Required to tell iOS Safari we don't want fullscreen
+    video.play();
+    requestAnimationFrame(tick);
+}
+
+function tick() {
+    // Call a QR code scanning function here
+    // For example, using jsQR or another library
+    requestAnimationFrame(tick);
+}
+
+document.getElementById('start').addEventListener('click', startCamera);
+</script>
