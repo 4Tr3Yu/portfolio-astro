@@ -3,15 +3,21 @@ import Layout from '../layouts/Layout.astro';
 const lang = 'es';
 ---
 <Layout title='Atre.dev | Full-stack Web Developer' description='Desarrollador Web Full-stack. Consultor de tecnología' lang={lang}>
-	<div class="w-full">
-		<video id="video" width="300" height="300" autoplay></video>
-		<button id="start">Start Scanning</button>
+	<div class="w-full h-[80vh] flex justify-center flex-col items-center">
+		<div class="border">
+
+			<video id="video" width="300" height="300" autoplay></video>
+		</div>
+		<button class="p-4 border border-crimson rounded-md mr-4 " id="start">Start Scanning</button>
+		<button class="p-4 border border-crimson rounded-md mr-4 " id="start-qr">Start QR Scanning</button>
+		<buuton class="p-4 border border-crimson rounded-md mr-4" id="stop">Stop Scanning</buuton>	
 		<div id="result"></div>
 	</div>
 </Layout>
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 <script>
     const video = document.getElementById('video') as HTMLVideoElement;
-const resultDiv = document.getElementById('result');
+	const resultDiv = document.getElementById('result');
 
 async function startCamera() {
     const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
@@ -20,12 +26,39 @@ async function startCamera() {
     video.play();
     requestAnimationFrame(tick);
 }
+const html5QrCode  = new Html5Qrcode("reader");
+
+function startQr() {
+	const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+  	console.log("success")
+	console.log("decoded", decodedText)  /* handle success */
+	console.log("decoded result", decodedResult)  /* handle success */
+	document.getElementById("result").innerText = `QR Code Result: ${decodedText}`;
+	html5QrCode.stop();
+};
+const qrCodeErrorCallback = (errorMessage) => {
+	// Handle error if needed
+	console.warn(`QR Code scanning error: ${errorMessage}`);
+};
+	html5QrCode.start(
+        { facingMode: "environment" }, // Use the rear camera
+        { fps: 10, qrbox: 250 }, // FPS and QR box size
+        qrCodeSuccessCallback,
+        qrCodeErrorCallback
+    ).catch(err => {
+        console.error(`Unable to start scanning: ${err}`);
+    });
+}
 
 function tick() {
+	console.log('tick');
     // Call a QR code scanning function here
     // For example, using jsQR or another library
     requestAnimationFrame(tick);
 }
-
+document.getElementById('stop').addEventListener('click', ()  =>{
+	video.pause();
+})
 document.getElementById('start').addEventListener('click', startCamera);
+document.getElementById('start-qr').addEventListener('click', startQr);
 </script>
