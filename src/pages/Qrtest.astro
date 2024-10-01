@@ -37,7 +37,7 @@ const qrCodeErrorCallback = (errorMessage) => {
 };
 	html5QrCode.start(
         { facingMode: "environment" }, // Use the rear camera
-        { fps: 30, qrbox: 50 }, // FPS and QR box size
+        { fps: 60, qrbox: { width: 100, height: 100 }}, // FPS and QR box size
         qrCodeSuccessCallback,
         qrCodeErrorCallback
     ).catch(err => {
