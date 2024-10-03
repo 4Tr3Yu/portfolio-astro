@@ -7,7 +7,7 @@ import SocialButton from '../ui/SocialButton.astro'
 import ProfilePicture from '../ProfilePicture.astro'
 import Whatsapp from '../icons/Whatsapp.astro'
 import Cv from '../icons/Cv.astro'
-import { introPageData } from '../../data/intro'
+import { introPageData } from '../../content/intro'
 
 interface Props {
 	lang: string
@@ -19,7 +19,7 @@ const { lang } = Astro.props
 	<article class=" md:w-2/3">
 		<header class="flex max-sm:flex-wrap justify-start sm:items-center mb-4">
 			<h1 class="text-4xl text-amber-400 font-extrabold max-sm:w-full mb-4 sm:mb-0 sm:mr-4">Jorge Aguirre </h1>
-			<Badge>{introPageData[lang].cta}</Badge>
+			<!-- <Badge>{introPageData[lang].cta}</Badge> -->
 		</header>
 		<p class="text-pretty  opacity-90 max-w-[500px]" set:html={introPageData[lang].intro} >
 			
