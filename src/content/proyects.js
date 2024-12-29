@@ -105,7 +105,7 @@ export const proyectsData = {
 		]
 	},
 	en: {
-		title: 'Proyects',
+		title: 'Projects',
 		wip: 'I am working on this section, sorry for the inconvenience 😋',
 		wipSmall: 'You can check my GitHub profile to see some of my projects',
 		showcase: [],
