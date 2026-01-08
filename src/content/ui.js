@@ -21,7 +21,7 @@ export const footerData = {
 		copy: 'Atre.dev - Desarrollando desde el 2017',
 	},
 	en: {
-		credits: 'Made with	❤️ by Atre',
+		credits: 'Made with ❤️ by Atre',
 		copy: 'Atre.dev - Developing since 2017',
 	}
 }

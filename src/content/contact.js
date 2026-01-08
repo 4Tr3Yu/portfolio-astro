@@ -1,6 +1,6 @@
 export const contactData = {
 	es: {
-		title: 'Como te ayudo?',
+		title: '¿Cómo te ayudo?',
 		form: {
 			name: 'Nombre',
 			email: 'Correo',
@@ -9,7 +9,7 @@ export const contactData = {
 		},
 		sorryMsg: 'Lo siento, no se pudo enviar el mensaje, por favor intenta más tarde.',
 		btnText: 'Enviar otro mensaje',	
-		welcomeText: 'Agendemos una reunión!, o ante cualquier duda, consulta o saludo, no dudes en contactarme. Criticas tambien son bienvenidas.',
+		welcomeText: '¡Agendemos una reunión! o ante cualquier duda, consulta o saludo, no dudes en contactarme. Críticas también son bienvenidas.',
 	},
 	en: {
 		title: 'How can I help?',
@@ -21,6 +21,6 @@ export const contactData = {
 		},
 		sorryMsg: 'Sorry, the message could not be sent, please try again later.',
 		btnText: 'Send another message',
-		welcomeText: 'Let\'s schedule a meeting!, or if you have any questions, queries or greetings, do not hesitate to contact me. Criticisms is also welcome.',
+		welcomeText: 'Let\'s schedule a meeting! If you have any questions, queries, or just want to say hello, don\'t hesitate to contact me. Criticism is also welcome.',
 	}
 }

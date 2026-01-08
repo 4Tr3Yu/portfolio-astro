@@ -5,13 +5,13 @@ export const experienceData = {
             {
                 title: "Desarrollador Full-stack",
                 body: {
-                    long: "Durante mi Working Holiday en Nueva Zelanda, tuve la oportunidad de trabajar en un Ghost Street un estudio de desarrollo con excelentes profesionales y mejores personas, Aquí pude trabajar con Svelte y SvelteKit, profundizando en mis conocimientos de Front-end. Además, tuve la oportunidad de trabajar con tecnologías como CraftCMS, Shopify, Supabase y AWS en una gran variedad de proyectos.",
+                    long: "Durante mi Working Holiday en Nueva Zelanda, tuve la oportunidad de trabajar en Ghost Street un estudio de desarrollo con excelentes profesionales y aún mejores personas. Aquí trabajé con Svelte y SvelteKit, profundizando en mis conocimientos de Front-end. Además, tuve la oportunidad de trabajar con tecnologías como CraftCMS, Shopify, Supabase y AWS en una gran variedad de proyectos.",
                     tasks: [
                         "Desarrollo en estrecha colaboración con diseñadores para implementar diseños de UI y UX usando técnicas avanzadas y frameworks modernos de CSS.",
-                        "Despliegue aplicaciones web en servidores de alojamiento como Apache, Nginx y soluciones Cloud como AWS.",
-                        "Mantención y soporte técnico para resolver problemas de clientes y aplicación de planes de mejora continua.",
+                        "Despliegue de aplicaciones web usando Apache, Nginx y soluciones Cloud como AWS.",
+                        "Mantenimiento y soporte técnico para resolver problemas de clientes y aplicación de planes de mejora continua.",
                         "Investigación de tecnologías emergentes y frameworks relevantes para definir el desarrollo de proyectos.",
-                        "Optimización de recursos como imágenes y videos para el óptimo rendimiento rendimiento de las UI.",
+                        "Optimización de recursos como imágenes y videos para el óptimo rendimiento de las UI.",
                     ],
                 },
                 href: "https://ghost.st/",
@@ -45,9 +45,9 @@ export const experienceData = {
                         "Desarrollo de interfaces de usuario para aplicaciones web y móviles utilizando Angular y React.",
                         "Integración servicios de datos de backend a través de APIs RESTful.",
                         "Colaboración con el equipo de QA para la resolución de problemas, depuración y corrección de aplicaciones bancarias existentes y nuevas.",
-                        "Diseño y construccion nuevas APIs utilizando arquitectura de microservicios para solicitudes de préstamos, funcionalidades de tarjetas de crédito y procesos de incorporación de clientes.",
-                        "Desarrollo y mantención de la documentación técnica de los proyectos.",
-                        "Creación de pipelines para despliegue continuo y participación en pases producción a gran escala del core bancario.",
+                        "Diseño y construcción nuevas APIs utilizando arquitectura de microservicios para solicitudes de préstamos, funcionalidades de tarjetas de crédito y procesos de incorporación de clientes.",
+                        "Desarrollo y mantenimiento de la documentación técnica de los proyectos.",
+                        "Creación de pipelines para despliegue continuo y participación en pases a producción a gran escala del core bancario.",
                         "Implantación de herramientas de monitoreo y alertas para los servicios de backend como DataDog y Kibana.",
                     ],
                 },
@@ -81,7 +81,7 @@ export const experienceData = {
             {
                 title: "Desarrollador Full-stack",
                 body: {
-                    long: "Durante mi tiempo en Banco Ripley, tuve el agrado de trabajar en el equipo de transformación digital, un equipo pequeño pero talentoso, donde cree la arquitectura de un sistema de gestión de contenido para el sitio público del Banco, una plataforma de para la creación y distribución de encuestas NPS, además de trabajar en la integración de APIs de terceros e impulsar el uso de control de versiones en Bitbucket y despliegues a GCP.",
+                    long: "Durante mi tiempo en Banco Ripley, tuve el agrado de trabajar en el equipo de transformación digital, un equipo pequeño pero talentoso, donde creé la arquitectura de un sistema de gestión de contenido para el sitio público del Banco, una plataforma para la creación y distribución de encuestas NPS, además de trabajar en la integración de APIs de terceros e impulsar el uso de control de versiones en Bitbucket y despliegues a GCP.",
                     tasks: [
                         "Diseño y desarrollo de un sistema de CMS personalizado para el sitio web público del banco.",
                         "Creación de una plataforma para realizar encuestas NPS para el back-office bancario.",
@@ -119,7 +119,7 @@ export const experienceData = {
                         "Diseño de maquetas y prototipos rápidos usando Vue.js",
                         "Integración APIs en varios sitios de la empresa.",
                         "Construcción de modelos y controladores para servicios de back-end de un sitio de comercio electrónico de automóviles.",
-                        "Creación y aplicación de rediseños con una mejor experiencia de    usuario para sitios antiguos.",
+                        "Creación y aplicación de rediseños con una mejor experiencia de usuario para sitios antiguos.",
                         "Investigación de nuevas tecnologías web para mejorar proyectos existentes",
                         "Desarrollo de contenido del sitio y gráficos coordinando con redactores y diseñadores gráficos.",
                         "Integración de tecnologías de audio para sitios de radio en línea.",
@@ -160,7 +160,7 @@ export const experienceData = {
                     long: "During my Working Holiday in New Zealand, I had the opportunity to work at Ghost Street, a development studio with excellent professionals and great people. Here, I worked with Svelte and SvelteKit, deepening my Front-end knowledge. Additionally, I worked with technologies such as CraftCMS, Shopify, Supabase, and AWS on a wide variety of projects.",
                     tasks: [
                         "Worked closely with designers to implement UI and UX designs using advanced techniques and modern CSS frameworks.",
-                        "Deployed web applications on hosting servers such as Apache, Nginx, and cloud solutions like AWS.",
+                        "Deployed web applications using Apache, Nginx, and cloud solutions like AWS.",
                         "Provided maintenance and technical support to resolve client issues and applied continuous improvement plans.",
                         "Researched emerging technologies and relevant frameworks to define project development.",
                         "Optimized resources such as images and videos for optimal UI performance.",

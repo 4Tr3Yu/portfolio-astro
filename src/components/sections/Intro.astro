@@ -23,9 +23,9 @@ const { lang } = Astro.props
 		<p class="text-pretty  opacity-90 max-w-[500px]" set:html={introPageData[lang].intro} >
 			
 		</p>
-		<p class="mb-4">
+		<!-- <p class="mb-4">
 			<a class="opacity-35 text-xs hover:animate-pulse hover:text-amber-400 hover:font-bold hover:text-lg hover:opacity-100 transition-all ease-in-out" href={lang === "es" ? "/side-b" : "/en/side-b"}>{introPageData[lang].cta2}</a>
-		</p> 
+		</p>  -->
 		<nav class="mb-6 sm:flex sm:flex-wrap sm:gap-x-3">
 			<SocialButton href="https://www.linkedin.com/in/jorge-aguirre-concha/" blank>
 				<Linkedin class="size-6"/>
