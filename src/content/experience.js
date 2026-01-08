@@ -1,3 +1,30 @@
+export const currentJobData = {
+    es: {
+        sectionTitle: "Actualmente en...",
+        company: "Ria Money Transfer",
+        href: "https://www.riamoneytransfer.com/",
+        imgSrc: "/images/ria.png",
+        iconSrc: "/images/logo-ria.svg",
+        dates: ["Oct 2024", "Presente"],
+        title: "Ingeniero de Front-end",
+        body: {
+            long: "A fines del 2024, me uní a Ria Money Transfer como Ingeniero de Front-end. RIA es una empresa líder en transferencias de dinero a nivel mundial, actualmente en un proceso de expansión y modernización tecnológica en manos de un nuevo equipo con base en Chile del cual estoy muy contento de ser parte, puedo compartir a diario profesionales muy talentosos y en un ambiente laboral muy grato."
+        }
+    },
+    en: {
+        sectionTitle: "Currently at...",
+        company: "Ria Money Transfer",
+        href: "https://www.riamoneytransfer.com/",
+        imgSrc: "/images/ria.png",
+        iconSrc: "/images/logo-ria.svg",
+        dates: ["Oct 2024", "Present"],
+        title: "Front-end Engineer",
+        body: {
+            long: "At the end of 2024, I joined Ria Money Transfer as a Front-end Engineer. RIA is a leading global money transfer company, currently undergoing a process of expansion and technological modernization under a new team based in Chile, of which I am very happy to be a part. I get to work daily with very talented professionals in a very pleasant work environment."
+        }
+    }
+}
+
 export const experienceData = {
     es: {
 		title: "Experiencia",
@@ -40,7 +67,7 @@ export const experienceData = {
             {
                 title: "Desarrollador Full-stack",
                 body: {
-                    long: "En Practia Global fui asignado para trabajar en Banco Falabella, donde tuve la oportunidad de trabajar como parte del equipo de desarrollo  para la banca de las personas en los sitios del banco en Perú y Chile. Aquí trabajé principalmente con Angular y Node, desarrollando las nuevas versiones de diversas experiencias digitales para los clientes del banco como parte del proyecto de transformación digital. Todo esto en una arquitectura de microservicios y despliegues en en diversas nubes como AWS y Azure.",
+                    long: "En Practia Global fui asignado para trabajar en Banco Falabella, donde tuve la oportunidad de trabajar como parte del equipo de desarrollo  para la banca de las personas en los sitios del banco en Perú y Chile. Aquí trabajé principalmente con Angular y Node, desarrollando las nuevas versiones de diversas experiencias digitales para los clientes del banco como parte del proyecto de transformación digital. Todo esto en una arquitectura de micro-servicios y despliegues en en diversas nubes como AWS y Azure.",
                     tasks: [
                         "Desarrollo de interfaces de usuario para aplicaciones web y móviles utilizando Angular y React.",
                         "Integración servicios de datos de backend a través de APIs RESTful.",
