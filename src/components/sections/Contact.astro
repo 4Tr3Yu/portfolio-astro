@@ -17,76 +17,91 @@ const { title, form, sorryMsg, btnText, welcomeText } = contactData[lang]
 	<section class="w-full sm:w-1/2 ">
 		<form method="POST" id="contact-form" class="w-full border border-crimson bg-gradient-to-tl from-crimson/35 to-transparent rounded-md p-10">
 			<div class="mb-8">
-			  <input type="text" id="name" name="name" autocomplete="name" required class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm" placeholder={form.name}/>
+			  <label for="name" class="sr-only">{form.name}</label>
+			  <input type="text" id="name" name="name" autocomplete="name" required maxlength="100" class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm" placeholder={form.name}/>
 			</div>
 		  
 			<div class="mb-8">
-			  <input type="email" id="email" name="email" autocomplete="email" required class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm" placeholder={form.email}/>
+			  <label for="email" class="sr-only">{form.email}</label>
+			  <input type="email" id="email" name="email" autocomplete="email" required maxlength="254" class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm" placeholder={form.email}/>
 			</div>
 		  
 			<div class="mb-4">
 			  <label for="message" class="pl-2 text-white opacity-55">{form.message}</label>
-			  <textarea id="message" name="message" rows="4" required class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm"></textarea>
+			  <textarea id="message" name="message" rows="4" required maxlength="5000" class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm"></textarea>
+			</div>
+
+			<!-- Honeypot: hidden from humans, bots tend to fill it. Checked server-side. -->
+			<div class="absolute -left-[9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+			  <label for="website">Website</label>
+			  <input type="text" id="website" name="website" tabindex="-1" autocomplete="off"/>
 			</div>
 	
-			<input type="hidden" id="lang" value={lang}>
-			<button type="submit" class="w-full cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium">{form.submit}</button>
+			<input type="hidden" id="lang" name="lang" value={lang}>
+			<button type="submit" id="submit-btn" class="w-full cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium disabled:opacity-50 disabled:cursor-wait disabled:hover:scale-100">{form.submit}</button>
 		  </form>
-		  <article id="resolve-box" class="w-full border border-crimson bg-gradient-to-tl from-crimson/35 to-transparent rounded-md p-10 hidden text-center">
+		  <article id="resolve-box" class="w-full border border-crimson bg-gradient-to-tl from-crimson/35 to-transparent rounded-md p-10 hidden text-center" role="status" aria-live="polite">
 			<p id="response-message" class="mb-2 text-lg opacity-85"></p>
 			<p id="error-message" class="mb-4 text-sm opacity-50 hidden">{sorryMsg}</p>
-
-			<!-- <button type="submit" class="w-full cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium">{btnText}</button> -->
+			<button type="button" id="retry-btn" class="w-full cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium">{btnText}</button>
 		  </article>
 	</section>
 </section>
 <script>
-	const $ = (element) => document.querySelector(element); 
-	const form = $('#contact-form');
-	const resolveBox = $('#resolve-box');
-	const responseMsgConatiner = $('#response-message');
-	const errorMsgContainer = $('#error-message');
-	const retryBtn = $('#retry-btn');
-	const handleFormResponse = (status, response) => {
+	const $ = (selector: string) => document.querySelector(selector);
+	const form = $('#contact-form') as HTMLFormElement;
+	const submitBtn = $('#submit-btn') as HTMLButtonElement;
+	const resolveBox = $('#resolve-box') as HTMLElement;
+	const responseMsgContainer = $('#response-message') as HTMLElement;
+	const errorMsgContainer = $('#error-message') as HTMLElement;
+	const retryBtn = $('#retry-btn') as HTMLButtonElement;
+
+	const handleFormResponse = (status: 'success' | 'error', message?: string) => {
 		form.classList.add('hidden');
 		resolveBox.classList.remove('hidden');
-		if (status === 'error') {
-			responseMsgConatiner.textContent = response.message;
-			errorMsgContainer.classList.remove('hidden');
-		} else {
-			responseMsgConatiner.textContent = response.message;
-		}
-		
+		responseMsgContainer.textContent = message ?? '';
+		errorMsgContainer.classList.toggle('hidden', status !== 'error');
 	}
 
+	const setSending = (sending: boolean) => {
+		submitBtn.disabled = sending;
+		submitBtn.setAttribute('aria-busy', String(sending));
+	}
 
 	form.addEventListener('submit', async (e) => {
 		e.preventDefault();
+		if (submitBtn.disabled) return;
+
 		const formData = {
-			name: $('#name').value,
-			email: $('#email').value,
-			message: $('#message').value,
-			lang: $('#lang').value
+			name: (form.elements.namedItem('name') as HTMLInputElement).value,
+			email: (form.elements.namedItem('email') as HTMLInputElement).value,
+			message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+			website: (form.elements.namedItem('website') as HTMLInputElement).value,
+			lang: (form.elements.namedItem('lang') as HTMLInputElement).value,
 		}
 
+		setSending(true);
 		try {
 			const response = await fetch('/api/contact', {
 				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
+				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(formData)
 			})
-			const data = await response.json();
-			if (response.ok) {
-				handleFormResponse('success', data);
-			} else {
-				handleFormResponse('error', data);
-			}
-	
-		} catch (error) {
-			handleFormResponse('error', error);
+			const data = await response.json().catch(() => ({}));
+			handleFormResponse(response.ok ? 'success' : 'error', data.message);
+		} catch {
+			// Network failure: no server message to show, the generic sorry line covers it.
+			handleFormResponse('error');
+		} finally {
+			setSending(false);
 		}
 	});
 
+	retryBtn.addEventListener('click', () => {
+		form.reset();
+		resolveBox.classList.add('hidden');
+		errorMsgContainer.classList.add('hidden');
+		form.classList.remove('hidden');
+		(form.elements.namedItem('name') as HTMLInputElement).focus();
+	});
 </script>
