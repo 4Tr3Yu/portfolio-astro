@@ -15,7 +15,7 @@ const { title, form, sorryMsg, btnText, welcomeText } = contactData[lang]
 		<p>{welcomeText} 😊</p>
 	</article>
 	<section class="w-full sm:w-1/2 ">
-		<form method="POST" id="contact-form" class="w-full border border-crimson bg-gradient-to-tl from-crimson/35 to-transparent rounded-md p-10">
+		<form method="POST" id="contact-form" class="w-full border border-crimson bg-linear-to-tl from-crimson/35 to-transparent rounded-md p-10">
 			<div class="mb-8">
 			  <label for="name" class="sr-only">{form.name}</label>
 			  <input type="text" id="name" name="name" autocomplete="name" required maxlength="100" class="p-2 mt-1 border-b border-crimson bg-crimson/10 w-full focus:border-b-2 focus:shadow-crimson focus:shadow-sm" placeholder={form.name}/>
@@ -40,7 +40,7 @@ const { title, form, sorryMsg, btnText, welcomeText } = contactData[lang]
 			<input type="hidden" id="lang" name="lang" value={lang}>
 			<button type="submit" id="submit-btn" class="w-full cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium disabled:opacity-50 disabled:cursor-wait disabled:hover:scale-100">{form.submit}</button>
 		  </form>
-		  <article id="resolve-box" class="w-full border border-crimson bg-gradient-to-tl from-crimson/35 to-transparent rounded-md p-10 hidden text-center" role="status" aria-live="polite">
+		  <article id="resolve-box" class="w-full border border-crimson bg-linear-to-tl from-crimson/35 to-transparent rounded-md p-10 hidden text-center" role="status" aria-live="polite">
 			<p id="response-message" class="mb-2 text-lg opacity-85"></p>
 			<p id="error-message" class="mb-4 text-sm opacity-50 hidden">{sorryMsg}</p>
 			<button type="button" id="retry-btn" class="w-full cursor-pointer text-xs text-ellipsis text-nowrap rounded-full border border-crimson bg-crimson/10 mb-2 flex justify-center items-center gap-x-2 py-2 px-3 hover:scale-105 transition-all ease-in-out hover:bg-crimson/50 hover:font-medium">{btnText}</button>

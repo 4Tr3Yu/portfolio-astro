@@ -16,11 +16,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/tailwind": "6.0.2",
-    "@fontsource-variable/raleway": "^5.0.21",
-    "astro": "5.16.7",
-    "nodemailer": "^6.9.15",
-    "sass": "^1.77.8",
-    "tailwindcss": "^3.4.10"
+    "@fontsource-variable/raleway": "^5.3.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.2",
+    "nodemailer": "^10.0.1",
+    "sass": "^1.104.0",
+    "tailwindcss": "^4.3.3"
   }
 }
