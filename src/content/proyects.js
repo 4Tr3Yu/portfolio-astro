@@ -1,7 +1,7 @@
 export const proyectsData = {
 	es: {
 		title: 'Proyectos',
-		wip: 'Estoy trabajando en esta sección, perdona las molestias 😋',
+		wip: 'Estoy trabajando en esta sección, perdona las molestias',
 		wipSmall: 'Puedes pasar por mi perfil de GitHub para ver algunos de mis proyectos',
 		showcase: [
 			{
@@ -106,7 +106,7 @@ export const proyectsData = {
 	},
 	en: {
 		title: 'Projects',
-		wip: 'I am working on this section, sorry for the inconvenience 😋',
+		wip: 'I am working on this section, sorry for the inconvenience',
 		wipSmall: 'You can check my GitHub profile to see some of my projects',
 		showcase: [],
 		other: []
