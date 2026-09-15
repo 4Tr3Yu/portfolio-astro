@@ -21,6 +21,10 @@ const messages = {
 		es: "No se pudo enviar el mensaje",
 		en: "The message could not be sent",
 	},
+	captchaFailed: {
+		es: "No pudimos verificar que eres humano, inténtalo de nuevo",
+		en: "We could not verify you are human, please try again",
+	},
 	success: {
 		es: "Mensaje enviado correctamente",
 		en: "Message sent successfully",
@@ -33,7 +37,57 @@ const MAX_EMAIL = 254;
 const MAX_MESSAGE = 5000;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const MAX_TURNSTILE_TOKEN = 2048;
+const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+
 const clean = (value) => (typeof value === "string" ? value.trim() : "");
+
+const clientIp = (req) => {
+	const forwarded = req.headers["x-forwarded-for"];
+	return typeof forwarded === "string" ? forwarded.split(",")[0].trim() : "";
+};
+
+// Feature flag, shared with the contact form so both sides agree on whether the captcha is on.
+// Unset means enabled, so leaving it out keeps the current behaviour.
+const isFlagOff = (value) => ["false", "0", "off", "no"].includes(String(value ?? "").trim().toLowerCase());
+const captchaEnabled = () => !isFlagOff(process.env.PUBLIC_CAPTCHA_ENABLED);
+
+// Cloudflare Turnstile: https://developers.cloudflare.com/turnstile/get-started/server-side-validation/
+// Returns true when the token is valid. Skipped when the feature flag is off, and skipped with a
+// warning when no secret is configured, so local development without Cloudflare keys keeps working.
+const verifyTurnstile = async (token, ip) => {
+	if (!captchaEnabled()) {
+		return true;
+	}
+
+	const secret = process.env.TURNSTILE_SECRET_KEY;
+	if (!secret) {
+		console.warn("TURNSTILE_SECRET_KEY is not set; skipping captcha verification");
+		return true;
+	}
+	if (!token || token.length > MAX_TURNSTILE_TOKEN) {
+		return false;
+	}
+
+	const params = new URLSearchParams({ secret, response: token });
+	if (ip) params.set("remoteip", ip);
+
+	try {
+		const result = await fetch(TURNSTILE_VERIFY_URL, {
+			method: "POST",
+			headers: { "Content-Type": "application/x-www-form-urlencoded" },
+			body: params,
+		});
+		const data = await result.json();
+		if (!data.success) {
+			console.warn("Turnstile rejected token:", data["error-codes"]);
+		}
+		return data.success === true;
+	} catch (error) {
+		console.error("Turnstile verification error:", error);
+		return false;
+	}
+};
 
 export default async function contact(req, res) {
 	const body = req.body && typeof req.body === "object" ? req.body : {};
@@ -65,6 +119,10 @@ export default async function contact(req, res) {
 	}
 	if (name.length > MAX_NAME || message.length > MAX_MESSAGE) {
 		return reply(400, "tooLong");
+	}
+
+	if (!(await verifyTurnstile(clean(body.turnstileToken), clientIp(req)))) {
+		return reply(400, "captchaFailed");
 	}
 
 	try {
