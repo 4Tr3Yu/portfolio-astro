@@ -7,11 +7,7 @@ interface Props {
 
 const { lang } = Astro.props
 const { title, form, sorryMsg, btnText, welcomeText } = contactData[lang]
-// Cloudflare Turnstile, configured as an Invisible widget in the Cloudflare dashboard: it shows
-// nothing to the visitor and solves in the background. The container is still required for the
-// script to find. Rendered only when the feature flag is on and a site key is configured; the
-// token is verified server-side in api/contact.js, which reads the same flag.
-// PUBLIC_CAPTCHA_ENABLED is read at build time here, so a change needs a redeploy.
+// Invisible Turnstile widget, verified server-side in api/contact.js. Flag is read at build time.
 const isFlagOff = (value: string | undefined) =>
 	['false', '0', 'off', 'no'].includes((value ?? '').trim().toLowerCase())
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? ''
@@ -67,14 +63,12 @@ const captchaEnabled = !isFlagOff(import.meta.env.PUBLIC_CAPTCHA_ENABLED) && Boo
 	const errorMsgContainer = $('#error-message') as HTMLElement;
 	const retryBtn = $('#retry-btn') as HTMLButtonElement;
 
-	// Turnstile tokens are single-use: get a fresh one after every attempt.
+	// Tokens are single-use.
 	const resetTurnstile = () => (window as any).turnstile?.reset?.();
 	const tokenValue = () =>
 		(form.elements.namedItem('cf-turnstile-response') as HTMLInputElement | null)?.value ?? '';
 
-	// The invisible widget solves in the background, so the token can still be pending when
-	// someone hits send. Wait for it rather than posting an empty one. Returns '' when the
-	// captcha is disabled, or when it never resolves, and the server decides what to do.
+	// The invisible widget solves in the background, so the token may not be ready on submit.
 	const waitForToken = async (timeoutMs = 10000) => {
 		if (!document.querySelector('.cf-turnstile')) return '';
 		const deadline = Date.now() + timeoutMs;

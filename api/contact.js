@@ -47,14 +47,11 @@ const clientIp = (req) => {
 	return typeof forwarded === "string" ? forwarded.split(",")[0].trim() : "";
 };
 
-// Feature flag, shared with the contact form so both sides agree on whether the captcha is on.
-// Unset means enabled, so leaving it out keeps the current behaviour.
+// Shared with the contact form. Unset means enabled.
 const isFlagOff = (value) => ["false", "0", "off", "no"].includes(String(value ?? "").trim().toLowerCase());
 const captchaEnabled = () => !isFlagOff(process.env.PUBLIC_CAPTCHA_ENABLED);
 
-// Cloudflare Turnstile: https://developers.cloudflare.com/turnstile/get-started/server-side-validation/
-// Returns true when the token is valid. Skipped when the feature flag is off, and skipped with a
-// warning when no secret is configured, so local development without Cloudflare keys keeps working.
+// https://developers.cloudflare.com/turnstile/get-started/server-side-validation/
 const verifyTurnstile = async (token, ip) => {
 	if (!captchaEnabled()) {
 		return true;
